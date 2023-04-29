@@ -1,0 +1,41 @@
+:root{
+    --menu-color:#C1F3FD;
+}
+
+.background {
+    background-image: url('/media/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    margin-bottom: var(--footer-height);
+}
+
+.img-menu{
+    width: 4.5rem;
+    height: 4.5rem;
+}
+
+.translucid{
+    background-color: var(--menu-color);
+}
+
+.img-welcome{
+    width: 26.5rem;
+    height: 26.5rem;
+}
+
+.welcome-message{
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+    text-align: center;
+}

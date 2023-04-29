@@ -7,15 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RegisterRequest;
-use DateTime;
 
 class LoginController extends Controller
 {
     public function registerForm()
     {
         if (Auth::check())
-        return redirect()->route('users.account');
-        return view('auth.register');
+            return redirect()->route('index');
+        else
+            return view('auth.register');
     }
 
     public function register(RegisterRequest $request)
@@ -23,44 +23,22 @@ class LoginController extends Controller
         // Crea un objeto usuario para almacenar todos los parámetros
         $user = new User();
 
-        $date = DateTime::createFromFormat('Y-m-d', $request->get('birthday'));
-
-        if ($date !== false) {
-            $user->birthday = $date->format('Y-m-d');
-        } else {
-            return redirect()->route('users.account');
-        }
-
-        $user->name = $request->get('name');
+        $user->rol = $request->get('rol');
+        $user->user = $request->get('user');
         $user->email = $request->get('email');
         $user->password = Hash::make($request->get('password'));
-        $user->birthday = $request->get('birthday');
-        $user->twitter = $request->get('twitter');
-        $user->instagram = $request->get('instagram');
-        $user->twitch = $request->get('twitch');
         $user->save();
 
         // Inicia sesión
         Auth::login($user);
 
-        // Guarda la foto en la carpeta avatars dentro de public para no ocupar espacio en el servidor
-        if ($request->file('avatar') == null) {
-            $avatarName = 'public/media/default.png';
-        } else {
-            $avatarName = $request->file('avatar')->storeAs('public/avatars', 'avatar' . Auth::user()->id . '.png');
-        }
-
-        $user->avatar = $avatarName;
-        return redirect()->route('users.account');
+        return redirect()->route('index');
     }
 
     public function loginForm()
     {
-        if (Auth::viaRemember())
-            return 'Bienvenido de nuevo';
-        else
-            if (Auth::check())
-            return redirect()->route('users.account');
+        if (Auth::check())
+            return redirect()->route('index');
         else
             return view('auth.login');
     }
@@ -73,7 +51,7 @@ class LoginController extends Controller
             $request->session()->regenerateToken();
             return redirect()->route('index');
         } else
-            $error = 'Error al acceder a la aplicación';
+            $error = 'El usuario o contraseña introducidos no son correctos';
         return view('auth.login', compact('error'));
     }
 

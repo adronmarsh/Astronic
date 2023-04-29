@@ -4,6 +4,7 @@
 
 @section('content')
     <div>
+        {{$user->user}}
     </div>
 
 @endsection

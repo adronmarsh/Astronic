@@ -18,7 +18,7 @@ f>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Space+Mono&display=swap" rel="stylesheet">
     <!--Título-->
-    <title><?php echo trans('messages.welcome-title'); ?></title>
+    <title> @yield('title') - Astronic</title>
     <!--Icono de la página-->
     <link rel="icon" href="/media/logo.ico">
 

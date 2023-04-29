@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
+use App\Models\User;
 
 
 /*
@@ -15,17 +17,25 @@ use App\Http\Controllers\LoginController;
 |
 */
 
+
+// --------------------- Static ---------------------
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('/');
 
-Route::get('/index', function () {
-    return view('index');
-});
+Route::get('index', function () {
+    $user_id = auth()->user()->id;
+    $user = User::findOrFail($user_id);
+    return view('index', compact('user'));
+})->name('index')->middleware('auth');
 
 // --------------------- Login ---------------------
-Route::get('registro', [LoginController::class, 'registerForm']);
-Route::post('registro', [Logincontroller::class, 'register'])->name('registro');
+Route::get('register', [LoginController::class, 'registerForm']);
+Route::post('register', [Logincontroller::class, 'register'])->name('register');
 Route::get('login', [LoginController::class, 'loginForm']);
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+// --------------------- Users ---------------------
+Route::resource('/miembros', UserController::class);
+Route::get('cuenta', [UserController::class, 'cuenta'])->name('users.account')->middleware('auth');

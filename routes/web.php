@@ -39,3 +39,10 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 // --------------------- Users ---------------------
 Route::resource('/miembros', UserController::class);
 Route::get('cuenta', [UserController::class, 'cuenta'])->name('users.account')->middleware('auth');
+
+// --------------------- Chat ---------------------
+Route::get('chat', function () {
+    $user_id = auth()->user()->id;
+    $user = User::findOrFail($user_id);
+    return view('chat', compact('user'));
+})->name('chat')->middleware('auth');

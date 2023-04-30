@@ -40,7 +40,7 @@
                                     alt="Home"></a>
                         </li>
                         <li class="nav-item mb-3">
-                            <a href="#" class="nav-link"><img class="img-menu" src="/media/menu/chat.png"
+                            <a href="chat" class="nav-link"><img class="img-menu" src="/media/menu/chat.png"
                                     alt="Chat"></a>
                         </li>
                         <li class="nav-item mb-3">

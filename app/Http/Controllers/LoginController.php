@@ -20,7 +20,6 @@ class LoginController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        // Crea un objeto usuario para almacenar todos los parámetros
         $user = new User();
 
         $user->rol = $request->get('rol');
@@ -29,7 +28,6 @@ class LoginController extends Controller
         $user->password = Hash::make($request->get('password'));
         $user->save();
 
-        // Inicia sesión
         Auth::login($user);
 
         return redirect()->route('index');

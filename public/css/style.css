@@ -17,6 +17,7 @@ body {
     margin: 0;
     padding: 0;
     margin-bottom: var(--footer-height);
+    width: 100%;
 }
 
 .img-menu{
@@ -38,4 +39,8 @@ body {
     text-align: center;
     width: 100%;
     text-align: center;
+}
+
+.setting-icon{
+    font-size: 48px;
 }

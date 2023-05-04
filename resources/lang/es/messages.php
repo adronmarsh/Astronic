@@ -11,4 +11,6 @@ return [
     'login-password' => 'Contraseña',
     'register-title' => 'Registro',
     'register-text' => 'Registro',
+    'settings-title' => 'Configuración',
+    'settings-text' => 'Configuración',
 ];

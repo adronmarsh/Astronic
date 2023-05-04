@@ -23,5 +23,6 @@
 
         </div>
     </div>
+    <script src="{{ asset('js/font.js') }}"></script>
 
 @endsection

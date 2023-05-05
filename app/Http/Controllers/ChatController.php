@@ -14,9 +14,12 @@ class ChatController extends Controller
      */
     public function index()
     {
+
+        $user = auth()->user();
+
         // Mostrar la lista de chats disponibles para el usuario
-        $chats = Chat::where('user_id', auth()->id())->get();
-        return view('chat.index', compact('chats'));
+        $chats = Chat::where('sender_id', auth()->id())->get();
+        return view('chat', compact(['chats','user']));
     }
 
     /**

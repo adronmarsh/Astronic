@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
+    public function index()
+    {
+        $user = auth()->user();
+        return view('settings', compact('user'));
+    }
+
     public function setLanguage(Request $request)
     {
         $language = $request->input('language', config('app.locale'));
@@ -34,7 +40,7 @@ class SettingController extends Controller
         $user->longitude = $request->input('longitude');
         $user->save();
 
-        return redirect()->route('settings')->with('success', 'Ubicación guardada correctamente.');
+        return redirect()->back();
     }
 
     public function upgrade()

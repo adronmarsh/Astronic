@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SettingController;
 use App\Models\User;
-use Illuminate\Http\Request;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -55,22 +54,9 @@ Route::get('chat', function () {
     return view('chat', compact('user'));
 })->name('chat')->middleware('auth');
 
-// --------------------- Language ---------------------
-Route::post('/set-language', function (Request $request) {
-    $language = $request->input('language', config('app.locale'));
-
-    $cookie = cookie('language', $language, 30 * 24 * 60);
-
-    return redirect()->back()->withCookie($cookie);
-})->name('setLanguage')->middleware('auth');
-
-// --------------------- Font ---------------------
-Route::post('/set-font', function (Request $request) {
-    $fontFamily = $request->input('font-family');
-    session(['fontFamily' => $fontFamily]);
-    return redirect()->back();
-})->name('setFont')->middleware('auth')->middleware('lang');
-
-// --------------------- Location ---------------------
-Route::get('/user/location', 'LocationController@showForm')->name('user.location');
-Route::post('/user/location', 'LocationController@store')->name('user.location.store');
+// --------------------- Settings ---------------------
+Route::post('/set-language', [SettingController::class, 'setLanguage'])->name('setLanguage')->middleware('auth');
+Route::post('/set-font', [SettingController::class, 'setFont'])->name('setFont')->middleware('auth');
+Route::post('/set-location', [SettingController::class, 'setLocation'])->name('setLocation')->middleware('auth');
+Route::get('/upgrade', [SettingController::class, 'upgrade'])->name('upgrade')->middleware('auth');
+Route::get('/downgrade', [SettingController::class, 'downgrade'])->name('downgrade')->middleware('auth');

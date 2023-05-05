@@ -1,5 +1,5 @@
-:root{
-    --menu-color:#C1F3FD;
+:root {
+    --menu-color: #C1F3FD;
 }
 
 .background {
@@ -20,27 +20,37 @@ body {
     width: 100%;
 }
 
-.img-menu{
+.img-menu {
     width: 4.5rem;
     height: 4.5rem;
 }
 
-.translucid{
+.translucid {
     background-color: var(--menu-color);
 }
 
-.img-welcome{
+.img-welcome {
     width: 26.5rem;
     height: 26.5rem;
 }
 
-.page-title{
+.page-title {
     padding: 5px;
     text-align: center;
     width: 100%;
     text-align: center;
 }
 
-.setting-icon{
+.setting-icon {
     font-size: 48px;
+}
+
+.menu{
+    border-right: solid 1px black;
+}
+@media (max-width: 767px) {
+    .menu {
+        border-right: 0px solid black;
+        border-bottom: 1px solid black;
+    }
 }

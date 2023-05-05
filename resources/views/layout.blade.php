@@ -22,9 +22,9 @@
 </head>
 
 
-<body class="background  row flex-nowrap" style="font-family: {{ session('fontFamily', 'Arial, sans-serif') }};">
+<body class="background row d-flex flex-row flex-wrap justify-content-center text-center m-0 p-0'" style="font-family: {{ session('fontFamily', 'Arial, sans-serif') }};">
             <div
-                class="translucid col-12 col-md-2 min-vh-100 border-end border-dark d-flex align-items-center text-center justify-content-center">
+                class="menu translucid col-12 col-md-2 min-vh-100 d-flex align-items-center text-center justify-content-center">
                 <div class="p-2 h-75">
                     <ul class="nav nav-pills flex-column mt-2 text-center">
                         <li class="nav-item mb-3">

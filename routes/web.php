@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\PostController;
 use App\Models\Chat;
 
 
@@ -40,6 +41,10 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 // --------------------- Users ---------------------
 Route::resource('/miembros', UserController::class)->middleware('auth');
 Route::get('cuenta', [UserController::class, 'cuenta'])->name('users.account')->middleware('auth');
+
+// --------------------- Posts ---------------------
+Route::resource('/posts', PostController::class)->middleware(['auth','lang']);
+
 
 // --------------------- Chat ---------------------
 Route::resource('/chat', ChatController::class)->middleware(['auth', 'lang']);

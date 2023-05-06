@@ -5,6 +5,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\SettingController;
+use App\Models\Chat;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +43,9 @@ Route::get('cuenta', [UserController::class, 'cuenta'])->name('users.account')->
 
 // --------------------- Chat ---------------------
 Route::resource('/chat', ChatController::class)->middleware(['auth', 'lang']);
+Route::post('/search-chat', [UserController::class, 'search'])->name('searchChat')->middleware('auth');
+Route::get('/chats/{userId}/{receiverId}', [ChatController::class, 'getChatMessages'])->middleware(['auth', 'lang']);
+
 
 // --------------------- Settings ---------------------
 Route::get('/settings', [SettingController::class, 'index'])->name('settings')->middleware(['auth', 'lang']);

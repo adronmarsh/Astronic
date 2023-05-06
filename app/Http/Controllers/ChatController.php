@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Chat;
 
 class ChatController extends Controller
@@ -14,12 +15,13 @@ class ChatController extends Controller
      */
     public function index()
     {
+        $userId = auth()->user()->id;
+        $chats = Chat::where('user_id', $userId)
+            ->orWhere('receiver_id', $userId)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
-        $user = auth()->user();
-
-        // Mostrar la lista de chats disponibles para el usuario
-        $chats = Chat::where('sender_id', auth()->id())->get();
-        return view('chat', compact(['chats','user']));
+        return view('chat.index', compact(['chats', 'userId']));
     }
 
     /**
@@ -47,13 +49,13 @@ class ChatController extends Controller
         // Crear un nuevo chat entre el usuario y otro participante
         $validatedData = $request->validate([
             'name' => 'required',
-            'participant_id' => 'required',
+            'receiver_id' => 'required',
         ]);
 
         $chat = Chat::create([
             'name' => $validatedData['name'],
             'user_id' => auth()->id(),
-            'participant_id' => $validatedData['participant_id'],
+            'receiver_id' => $validatedData['receiver_id'],
         ]);
 
         return redirect()->route('chat.show', $chat->id);
@@ -94,5 +96,23 @@ class ChatController extends Controller
         $chat = Chat::findOrFail($id);
         $chat->delete();
         return redirect()->route('chat.index');
+    }
+
+    public function getChatMessages($userId, $receiverId)
+    {
+        $messages = Chat::where(function ($query) use ($userId, $receiverId) {
+                        $query->where('user_id', $userId)
+                              ->where('receiver_id', $receiverId);
+                    })
+                    ->orWhere(function ($query) use ($userId, $receiverId) {
+                        $query->where('user_id', $receiverId)
+                              ->where('receiver_id', $userId);
+                    })
+                    ->orderBy('created_at', 'asc')
+                    ->get();
+
+        return redirect()->back()->with('messages', $messages);
+
+        // return view('chat', compact('messages'));
     }
 }

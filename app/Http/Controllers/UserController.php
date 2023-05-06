@@ -89,4 +89,10 @@ class UserController extends Controller
         //
     }
 
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('searchChat');
+        $users = User::where('user', 'LIKE', '%' . $searchTerm . '%')->get();
+        return redirect()->route('chat.index', compact('users'));
+    }
 }

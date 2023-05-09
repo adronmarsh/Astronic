@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-// require '..\\vendor\\autoload.php';
 
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use League\Flysystem\Filesystem;
 use Aws\S3\S3Client;

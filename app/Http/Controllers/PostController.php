@@ -1,16 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+// require '..\\vendor\\autoload.php';
 
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Filesystem;
 use Aws\S3\S3Client;
-
+use League\Flysystem\AwsS3V3\AwsS3V3Adapter;
 
 
 class PostController extends Controller
@@ -35,59 +35,54 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // Validar los datos enviados por el formulario
-        $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required',
-            'image' => 'nullable|image|max:2048', // Máximo 2MB
-            'video' => 'nullable|mimes:mp4|max:20480', // Máximo 20MB
-        ]);
+{
+    // Validar los datos enviados por el formulario
+    $validatedData = $request->validate([
+        'title' => 'required|max:255',
+        'content' => 'required',
+        'image' => 'nullable|image|max:2048', // Máximo 2MB
+        'video' => 'nullable|mimes:mp4|max:20480', // Máximo 20MB
+    ]);
 
-        // Crear un nuevo post en la base de datos
-        $post = new Post;
-        $post->title = $validatedData['title'];
-        $post->content = $validatedData['content'];
-        $post->user_id = auth()->user()->id;; // Asociar el post al usuario actual
+    // Crear un nuevo post en la base de datos
+    $post = new Post;
+    $post->title = $validatedData['title'];
+    $post->content = $validatedData['content'];
+    $post->user_id = auth()->user()->id;; // Asociar el post al usuario actual
 
-        // Subir la imagen o video
-        // if ($request->hasFile('image')) {
-        //     $image = $request->file('image');
-        //     $extension = $image->getClientOriginalExtension();
-        //     $fileName = Str::uuid() . '.' . $extension;
+    // Subir la imagen
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $extension = $image->getClientOriginalExtension();
+        $fileName = Str::uuid() . '.' . $extension;
+        $adapter = new AwsS3V3Adapter(
+            new S3Client([
+                'region' => env('AWS_DEFAULT_REGION'),
+                'version' => 'latest',
+                'credentials' => [
+                    'key' => env('AWS_ACCESS_KEY_ID'),
+                    'secret' => env('AWS_SECRET_ACCESS_KEY')
+                ]
+            ]),
+            env('AWS_BUCKET')
+        );
 
-        //     $adapter = new AwsS3Adapter(
-        //         new S3Client([
-        //             'region' => env('AWS_DEFAULT_REGION'),
-        //             'version' => 'latest',
-        //             'credentials' => [
-        //                 'key' => env('AWS_ACCESS_KEY_ID'),
-        //                 'secret' => env('AWS_SECRET_ACCESS_KEY')
-        //             ]
-        //         ]),
-        //         env('AWS_BUCKET')
-        //     );
+        $filesystem = new Filesystem($adapter);
 
-        //     $filesystem = new Filesystem($adapter);
+        $path = 'images/' . $fileName;
 
-        //     $path = 'images/' . $fileName;
+        $filesystem->write($path, file_get_contents($image));
 
-        //     $path = Storage::disk('s3')->put('carpeta', $image);
+        $imageUrl = Storage::disk('s3')->url($path);
 
-
-        //     $filesystem->write($path, file_get_contents($image), [
-        //         'visibility' => 'public'
-        //     ]);
-
-        //     $imageUrl = Storage::disk('s3')->url($path);
-
-        //     $post->image_url = $imageUrl;
-        // }
-
-        $post->save();
-
-        return redirect()->route('index');
+        $post->image_url = $imageUrl;
     }
+
+    $post->save();
+
+    return redirect()->route('index');
+}
+
 
 
     /**

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use League\Flysystem\Filesystem;
 use Aws\S3\S3Client;
@@ -33,53 +32,49 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    // Validar los datos enviados por el formulario
-    $validatedData = $request->validate([
-        'title' => 'required|max:255',
-        'content' => 'required',
-        'image' => 'nullable|image|max:2048', // Máximo 2MB
-        'video' => 'nullable|mimes:mp4|max:20480', // Máximo 20MB
-    ]);
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'image' => 'nullable|image|max:2048',
+            'video' => 'nullable|mimes:mp4|max:20480',
+        ]);
 
-    // Crear un nuevo post en la base de datos
-    $post = new Post;
-    $post->title = $validatedData['title'];
-    $post->content = $validatedData['content'];
-    $post->user_id = auth()->user()->id;; // Asociar el post al usuario actual
+        $post = new Post;
+        $post->title = $validatedData['title'];
+        $post->content = $validatedData['content'];
+        $post->user_id = auth()->user()->id;
 
-    // Subir la imagen
-    if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $extension = $image->getClientOriginalExtension();
-        $fileName = Str::uuid() . '.' . $extension;
-        $adapter = new AwsS3V3Adapter(
-            new S3Client([
-                'region' => env('AWS_DEFAULT_REGION'),
-                'version' => 'latest',
-                'credentials' => [
-                    'key' => env('AWS_ACCESS_KEY_ID'),
-                    'secret' => env('AWS_SECRET_ACCESS_KEY')
-                ]
-            ]),
-            env('AWS_BUCKET')
-        );
+        if ($request->hasFile('image') || $request->hasFile('video')) {
+            $file = $request->file('image') ?? $request->file('video');
+            $extension = $file->getClientOriginalExtension();
+            $fileName = Str::uuid() . '.' . $extension;
+            $adapter = new AwsS3V3Adapter(
+                new S3Client([
+                    'region' => env('AWS_DEFAULT_REGION'),
+                    'version' => 'latest',
+                    'credentials' => [
+                        'key' => env('AWS_ACCESS_KEY_ID'),
+                        'secret' => env('AWS_SECRET_ACCESS_KEY')
+                    ]
+                ]),
+                env('AWS_BUCKET')
+            );
 
-        $filesystem = new Filesystem($adapter);
+            $filesystem = new Filesystem($adapter);
 
-        $path = 'images/' . $fileName;
+            $path = '\/posts/' . $fileName;
 
-        $filesystem->write($path, file_get_contents($image));
+            $filesystem->write($path, file_get_contents($file));
 
-        $imageUrl = Storage::disk('s3')->url($path);
+            $url = env('AWS_URL') . $path;
+            $post->url = $url;
+        }
 
-        $post->image_url = $imageUrl;
+        $post->save();
+
+        return redirect()->route('index');
     }
-
-    $post->save();
-
-    return redirect()->route('index');
-}
 
 
 

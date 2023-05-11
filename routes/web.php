@@ -7,6 +7,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PostController;
 use App\Models\Chat;
+use App\Models\Post;
 
 
 /*
@@ -28,7 +29,8 @@ Route::get('/', function () {
 
 Route::get('/index', function () {
     $user = auth()->user();
-    return view('index', compact('user'));
+    $posts = Post::all();
+    return view('index', compact(['user', 'posts']));
 })->name('index')->middleware(['auth', 'lang']);
 
 // --------------------- Login ---------------------
@@ -44,6 +46,7 @@ Route::get('cuenta', [UserController::class, 'cuenta'])->name('users.account')->
 
 // --------------------- Posts ---------------------
 Route::resource('/posts', PostController::class)->middleware(['auth','lang']);
+Route::get('/upload', [PostController::class, 'upload'])->name('upload')->middleware(['auth', 'lang']);
 
 
 // --------------------- Chat ---------------------

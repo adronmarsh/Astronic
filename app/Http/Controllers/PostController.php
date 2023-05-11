@@ -18,7 +18,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        $posts = Post::all();
+        return view('index', compact('posts'));
     }
 
     /**
@@ -57,7 +58,7 @@ class PostController extends Controller
 
             $filesystem = new Filesystem($adapter);
 
-            $path = '\/posts/' . $fileName;
+            $path = '/posts/' . $fileName;
 
             $filesystem->write($path, file_get_contents($file));
 
@@ -102,5 +103,9 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function upload(){
+        return view('posts.upload');
     }
 }

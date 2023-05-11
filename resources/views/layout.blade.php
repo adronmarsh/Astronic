@@ -44,7 +44,7 @@
                                     alt="Map"></a>
                         </li>
                         <li class="nav-item mb-3">
-                            <a href="posts" class="nav-link"><img class="img-menu" src="/media/menu/plus.png"
+                            <a href="upload" class="nav-link"><img class="img-menu" src="/media/menu/plus.png"
                                     alt="Submit Posts"></a>
                         </li>
                         <li class="nav-item mb-3">

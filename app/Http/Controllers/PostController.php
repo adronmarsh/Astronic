@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 use Illuminate\Support\Str;
 use League\Flysystem\Filesystem;
 use Aws\S3\S3Client;
@@ -31,22 +32,15 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required',
-            'image' => 'nullable|image|max:2048',
-            'video' => 'nullable|mimes:mp4|max:20480',
-        ]);
-
         $post = new Post;
-        $post->title = $validatedData['title'];
-        $post->content = $validatedData['content'];
+        $post->title = $request['title'];
+        $post->content = $request['content'];
         $post->user_id = auth()->user()->id;
 
-        if ($request->hasFile('image') || $request->hasFile('video')) {
-            $file = $request->file('image') ?? $request->file('video');
+        if ($request->hasFile('media')) {
+            $file = $request->file('media');
             $extension = $file->getClientOriginalExtension();
             $fileName = Str::uuid() . '.' . $extension;
             $adapter = new AwsS3V3Adapter(

@@ -23,21 +23,12 @@
     </div>
 
     <div class="form-group">
-        <label for="image">Imagen:</label>
-        <input type="file" name="image" id="image" class="form-control-file">
-        @error('image')
+        <label for="image">Media:</label>
+        <input type="file" name="media" id="media" class="form-control-file">
+        @error('media')
             <p class="text-danger">{{ $message }}</p>
         @enderror
     </div>
-
-    <div class="form-group">
-        <label for="video">Video:</label>
-        <input type="file" name="video" id="video" class="form-control-file">
-        @error('video')
-            <p class="text-danger">{{ $message }}</p>
-        @enderror
-    </div>
-
     <button type="submit" class="btn btn-primary">Crear post</button>
 </form>
 

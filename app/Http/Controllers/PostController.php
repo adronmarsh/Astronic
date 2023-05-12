@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Str;
@@ -105,7 +106,30 @@ class PostController extends Controller
         //
     }
 
-    public function upload(){
+    public function upload()
+    {
         return view('posts.upload');
+    }
+
+    public function like($postId)
+    {
+        $userId = auth()->id();
+        $post = Post::findOrFail($postId);
+        $likesCount = Like::where('post_id', $postId)->count();
+
+        if ($post->likes()->where('user_id', $userId)->exists()) {
+            $like = Like::where('post_id', $postId)->where('user_id', $userId)->first();
+            $like->delete();
+
+            return response()->json(['likes_count' => $likesCount]);
+        } else {
+
+            $like = new Like();
+            $like->post_id = $postId;
+            $like->user_id = auth()->id();
+            $like->save();
+
+            return response()->json(['likes_count' => $likesCount]);
+        }
     }
 }

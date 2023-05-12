@@ -4,10 +4,18 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
+        <div class="row d-flex justify-content-center">
             @foreach ($posts as $post)
-                <div class="col-md-6 mb-4">
+                <?php $liked = $post->likes->contains('user_id', auth()->id()); ?>
+                <div class="col-md-7 mb-4 p-4">
                     <div class="card">
+                        <div class="card-body">
+                            <span class="like-count">{{ $post->likes->count() }}</span>
+                            <button class="btn btn-link like-btn{{ $liked ? ' liked' : '' }}"
+                                data-post-id="{{ $post->id }}">
+                                <i class="fa fa-heart {{ $liked ? 'text-danger' : 'text-dark' }}"></i>
+                            </button>
+                        </div>
                         @if ($post->url)
                             @if (in_array(pathinfo($post->url, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif', 'jfif']))
                                 <img class="card-img-top" src="{{ $post->url }}" alt="{{ $post->title }}">

@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeController;
 use App\Models\Chat;
 use App\Models\Post;
 
@@ -47,7 +48,7 @@ Route::get('cuenta', [UserController::class, 'cuenta'])->name('users.account')->
 // --------------------- Posts ---------------------
 Route::resource('/posts', PostController::class)->middleware(['auth','lang']);
 Route::get('/upload', [PostController::class, 'upload'])->name('upload')->middleware(['auth', 'lang']);
-
+Route::post('/posts/{id}/like', [PostController::class, 'like'])->name('posts.like')->middleware(['auth', 'lang']);
 
 // --------------------- Chat ---------------------
 Route::resource('/chat', ChatController::class)->middleware(['auth', 'lang']);

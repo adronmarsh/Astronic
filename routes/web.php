@@ -9,6 +9,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\LikeController;
 use App\Models\Chat;
 use App\Models\Post;
+use App\Models\User;
 
 
 /*
@@ -30,7 +31,7 @@ Route::get('/', function () {
 
 Route::get('/index', function () {
     $user = auth()->user();
-    $posts = Post::all();
+    $posts = Post::latest()->get();
     return view('index', compact(['user', 'posts']));
 })->name('index')->middleware(['auth', 'lang']);
 
@@ -42,8 +43,8 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // --------------------- Users ---------------------
-Route::resource('/miembros', UserController::class)->middleware('auth');
-Route::get('cuenta', [UserController::class, 'cuenta'])->name('users.account')->middleware('auth');
+Route::resource('/account', UserController::class)->middleware('auth');
+// Route::get('/account', [UserController::class, 'cuenta'])->name('users.account')->middleware('auth');
 
 // --------------------- Posts ---------------------
 Route::resource('/posts', PostController::class)->middleware(['auth','lang']);

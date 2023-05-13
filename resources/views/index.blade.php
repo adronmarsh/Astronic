@@ -10,6 +10,7 @@
                 <div class="col-md-7 mb-4 p-4">
                     <div class="card">
                         <div class="card-body">
+                            <h1>{{ $post->user->user }}</h1>
                             <span class="like-count">{{ $post->likes->count() }}</span>
                             <button class="btn btn-link like-btn{{ $liked ? ' liked' : '' }}"
                                 data-post-id="{{ $post->id }}">
@@ -22,7 +23,6 @@
                             @elseif (in_array(pathinfo($post->url, PATHINFO_EXTENSION), ['mp4']))
                                 <video class="card-img-top" controls>
                                     <source src="{{ $post->url }}" type="video/mp4">
-                                    Your browser does not support the video tag.
                                 </video>
                             @endif
                         @endif

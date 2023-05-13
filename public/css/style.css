@@ -45,12 +45,22 @@ body {
     font-size: 48px;
 }
 
-.menu{
+.menu {
     border-right: solid 1px black;
 }
+
 @media (max-width: 767px) {
     .menu {
         border-right: 0px solid black;
         border-bottom: 1px solid black;
     }
+}
+
+.avatar {
+    width: 3rem;
+    height: 3rem;
+}
+
+.avatar-edit {
+    cursor: pointer;
 }

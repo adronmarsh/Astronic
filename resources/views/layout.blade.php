@@ -49,7 +49,7 @@
                             alt="Map"></a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a href="/upload" class="nav-link"><img class="img-menu" src="/media/menu/plus.png"
+                    <a href="/posts/create" class="nav-link"><img class="img-menu" src="/media/menu/plus.png"
                             alt="Submit Posts"></a>
                 </li>
                 <li class="nav-item mb-3">
@@ -64,7 +64,6 @@
         </div>
     </div>
     <div class="col-12 col-md-10">
-
         @yield('content')
     </div>
     <script src="{{ asset('js/like.js') }}"></script>

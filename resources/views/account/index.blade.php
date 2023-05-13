@@ -10,7 +10,7 @@
                 alt="Foto de perfil de {{ $user->user }}">
             <h1>{{ $user->user }}</h1>
             <a href="{{ route('account.edit', $user->id) }}" class="btn btn-primary">Editar perfil</a>
-            <p>Número de publicaciones: {{ $user->posts->count() }}</p>
+            <p>Posts: {{ $user->posts->count() }}</p>
             {{ $user->bio }}
         </div>
         @foreach ($posts as $post)
@@ -26,7 +26,7 @@
                             data-post-id="{{ $post->id }}">
                             <i class="fa fa-heart {{ $liked ? 'text-danger' : 'text-dark' }}"></i>
                         </button>
-                        <span class="like-count">{{ $post->likes->count() }}</span>
+                        <span class="like-count" data-post-id="{{ $post->id }}">{{ $post->likes->count() }}</span>
                     </div>
                     @if ($post->url)
                         @if (in_array(pathinfo($post->url, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif', 'jfif']))

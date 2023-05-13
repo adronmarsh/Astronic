@@ -117,10 +117,13 @@ class UserController extends Controller
 
             $url = env('AWS_URL') . $path;
             $user->avatar = $url;
-            $oldAvatar = str_replace(env('AWS_URL'), '', $user->getOriginal('avatar'));
-            $filesystem->delete($oldAvatar);
+            if ($user->avatar != null) {
+                $oldAvatar = str_replace(env('AWS_URL'), '', $user->getOriginal('avatar'));
+                $filesystem->delete($oldAvatar);
+            }
         }
         $user->avatar = $user->avatar;
+
         $user->save();
         return redirect()->route('account.index');
     }

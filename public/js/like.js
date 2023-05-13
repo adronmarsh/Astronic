@@ -15,7 +15,9 @@ $(document).on('click', '.like-btn', function (event) {
         success: function (response) {
             let likesCount = response.likes_count;
             let likeBtn = $('.like-btn[data-post-id="' + id + '"]');
-            let likeCountSpan = $('.like-count');
+            // let likeCountSpan = $('.like-count');
+            let likeCountSpan = $('.like-count[data-post-id="' + id + '"]');
+
 
             if (likeBtn.find('i').hasClass('text-dark')) {
                 likeBtn.find('i').removeClass('text-dark').addClass('text-danger');

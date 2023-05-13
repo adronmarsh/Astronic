@@ -7,7 +7,9 @@
 @section('content')
     <div>
         <h1 class="mt-5"><?php echo trans('messages.register-text'); ?></h1>
-        <img class="img-welcome" src="media/logo.png" alt="Astronic Logo">
+        <a href="/">
+            <img class="img-welcome" src="media/logo.png" alt="Astronic Logo">
+        </a>
         <form action="{{ route('register') }}" method="POST">
             @csrf
             <label for="rol">

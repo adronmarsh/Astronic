@@ -44,11 +44,9 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // --------------------- Users ---------------------
 Route::resource('/account', UserController::class)->middleware('auth');
-// Route::get('/account', [UserController::class, 'cuenta'])->name('users.account')->middleware('auth');
 
 // --------------------- Posts ---------------------
 Route::resource('/posts', PostController::class)->middleware(['auth','lang']);
-Route::get('/upload', [PostController::class, 'upload'])->name('upload')->middleware(['auth', 'lang']);
 Route::post('/posts/{id}/like', [PostController::class, 'like'])->name('posts.like')->middleware(['auth', 'lang']);
 
 // --------------------- Chat ---------------------

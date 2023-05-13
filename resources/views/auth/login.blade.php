@@ -7,7 +7,9 @@
 @section('content')
     <div>
         <h1 class="mt-5">{{_('messages.login-title')}}</h1>
-        <img class="img-welcome" src="media/logo.png" alt="Astronic Logo">
+        <a href="/">
+            <img class="img-welcome" src="media/logo.png" alt="Astronic Logo">
+        </a>
         <form action="{{ route('login') }}" method="POST">
             @csrf
             <label for="user">

@@ -11,7 +11,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h1>{{ $post->user->user }}</h1>
-                            <span class="like-count">{{ $post->likes->count() }}</span>
+                            <span class="like-count" data-post-id="{{ $post->id }}">{{ $post->likes->count() }}</span>
                             <button class="btn btn-link like-btn{{ $liked ? ' liked' : '' }}"
                                 data-post-id="{{ $post->id }}">
                                 <i class="fa fa-heart {{ $liked ? 'text-danger' : 'text-dark' }}"></i>

@@ -15,13 +15,14 @@
         </div>
         @foreach ($posts as $post)
             <?php $liked = $post->likes->contains('user_id', auth()->id()); ?>
-            <div class="col-md-4 mb-4 p-4">
+            {{-- <div class="col-md-4 mb-4 p-4">
                 <div class="card">
                     <div class="card-body">
                         <img class="avatar rounded-circle img-ms"
-                            src="{{ $user->avatar != null ? $user->avatar : asset('media/default-avatar.png') }}"
-                            alt="Foto de perfil de {{ $user->user }}">
-                        {{ $user->user }}
+                            src="{{ $post->user->avatar != null ? $post->user->avatar : asset('media/default-avatar.png') }}"
+                            alt="Foto de perfil de {{ $post->user->user }}">
+                        {{ $post->user->user }}
+                        <?php $liked = $post->likes->contains('user_id', auth()->id()); ?>
                         <button class="btn btn-link like-btn{{ $liked ? ' liked' : '' }}"
                             data-post-id="{{ $post->id }}">
                             <i class="fa fa-heart {{ $liked ? 'text-danger' : 'text-dark' }}"></i>
@@ -42,7 +43,8 @@
                         <p class="card-text">{{ $post->content }}</p>
                     </div>
                 </div>
-            </div>
+            </div> --}}
+            @include('partials.post', ['post' => $post])
         @endforeach
     </div>
 

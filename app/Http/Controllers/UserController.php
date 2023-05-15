@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Follow;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Requests\AccountRequest;
@@ -144,5 +145,13 @@ class UserController extends Controller
         $searchTerm = $request->input('searchChat');
         $users = User::where('user', 'LIKE', '%' . $searchTerm . '%')->get();
         return redirect()->route('chat.index', compact('users'));
+    }
+
+    public function follow(User $user)
+    {
+        $follow = new Follow;
+        $follow->user_id = auth()->id();
+        $follow->follower_id = $user;
+        return redirect()->back();
     }
 }

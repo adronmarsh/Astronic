@@ -6,16 +6,19 @@
     <div class="container">
         <div class="row d-flex justify-content-center">
             @foreach ($posts as $post)
-                <?php $liked = $post->likes->contains('user_id', auth()->id()); ?>
                 <div class="col-md-7 mb-4 p-4">
                     <div class="card">
                         <div class="card-body">
-                            <h1>{{ $post->user->user }}</h1>
-                            <span class="like-count" data-post-id="{{ $post->id }}">{{ $post->likes->count() }}</span>
+                            <img class="avatar rounded-circle img-ms"
+                                src="{{ $post->user->avatar != null ? $post->user->avatar : asset('media/default-avatar.png') }}"
+                                alt="Foto de perfil de {{ $post->user->user }}">
+                            {{ $post->user->user }}
+                            <?php $liked = $post->likes->contains('user_id', auth()->id()); ?>
                             <button class="btn btn-link like-btn{{ $liked ? ' liked' : '' }}"
                                 data-post-id="{{ $post->id }}">
                                 <i class="fa fa-heart {{ $liked ? 'text-danger' : 'text-dark' }}"></i>
                             </button>
+                            <span class="like-count" data-post-id="{{ $post->id }}">{{ $post->likes->count() }}</span>
                         </div>
                         @if ($post->url)
                             @if (in_array(pathinfo($post->url, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif', 'jfif']))

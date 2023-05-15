@@ -3,14 +3,20 @@
 @section('title', 'Cuenta')
 
 @section('content')
-    <div class="row d-flex justify-content-center">
-        <div>
+    <div class="row d-flex justify-content-left">
+        <div class="mt-5">
             <img class="avatar rounded-circle img-ms"
                 src="{{ $user->avatar != null ? $user->avatar : asset('media/default-avatar.png') }}"
                 alt="Foto de perfil de {{ $user->user }}">
-            <h1>{{ $user->user }}</h1>
-            <a href="{{ route('account.edit', $user->id) }}" class="btn btn-primary">Editar perfil</a>
-            <p>Posts: {{ $user->posts->count() }}</p>
+            <div class="d-flex justify-content-center align-items-center">
+                <h1 class="p-3">{{ $user->user }}</h1>
+                <div><a href="{{ route('account.edit', $user->id) }}" class="btn btn-primary">Editar perfil</a></div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <p class="p-3">{{ $user->posts->count() }} posts</p>
+                <p class="p-3">x followers</p>
+                <p class="p-3">x following</p>
+            </div>
             {{ $user->bio }}
         </div>
         @foreach ($posts as $post)

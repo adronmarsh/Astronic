@@ -29,9 +29,9 @@
 <body class="background row d-flex flex-row flex-wrap justify-content-center text-center m-0 p-0'"
     style="font-family: {{ session('fontFamily', 'Arial, sans-serif') }};">
     <div
-        class="menu translucid col-12 col-md-2 min-vh-100 d-flex align-items-center text-center justify-content-center">
-        <div class="p-2 h-75">
-            <ul class="nav nav-pills flex-column mt-2 text-center">
+        class="menu translucid col-12 col-md-2 min-vh-100 d-flex text-center justify-content-center">
+        {{-- <div class="h-100"> --}}
+            <ul class="nav nav-pills flex-column mt-2 text-center d-flex flex-wrap">
                 <li class="nav-item mb-3">
                     <a href="/account" class="nav-link"><img class="img-menu" src="/media/menu/profile.png"
                             alt="Profile"></a>
@@ -61,7 +61,7 @@
                             alt="Logout"></a>
                 </li>
             </ul>
-        </div>
+        {{-- </div> --}}
     </div>
     <div class="col-12 col-md-10">
         @yield('content')

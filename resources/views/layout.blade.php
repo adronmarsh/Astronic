@@ -28,42 +28,53 @@
 
 <body class="background row d-flex flex-row flex-wrap justify-content-center text-center m-0 p-0'"
     style="font-family: {{ session('fontFamily', 'Arial, sans-serif') }};">
-    <div
-        class="menu order-2 order-md-1 menu-color col-12 col-md-2 d-flex text-center justify-content-center">
-            <ul class="nav nav-pills text-center d-flex flex-wrap justify-content-center flex-sm-row flex-md-column">
-                <li class="nav-item mb-3">
-                    <a href="/account" class="nav-link"><img class="img-menu" src="/media/menu/profile.png"
-                            alt="Profile"></a>
+    <div class="menu-top menu-color col-12 row-md-2 d-flex text-center justify-content-center">
+        <ul class="nav nav-pills text-center d-flex flex-wrap justify-content-center flex-sm-row flex-md-row w-100  p-2">
+            <div class="w-50 d-flex justify-content-start">
+                <li class="nav-item d-flex align-items-center">
+                    <a href="/">
+                        <img class="img-menu" src="/media/logo.svg" alt="">
+                    </a>
                 </li>
-                <li class="nav-item mb-3">
-                    <a href="/index" class="nav-link"><img class="img-menu" src="/media/menu/home.png"
-                            alt="Home"></a>
-                </li>
-                <li class="nav-item mb-3">
-                    <a href="/chat" class="nav-link"><img class="img-menu" src="/media/menu/chat.png"
-                            alt="Chat"></a>
-                </li>
-                <li class="nav-item mb-3">
-                    <a href="#" class="nav-link"><img class="img-menu" src="/media/menu/map.png"
-                            alt="Map"></a>
-                </li>
-                <li class="nav-item mb-3">
-                    <a href="/posts/create" class="nav-link"><img class="img-menu" src="/media/menu/plus.png"
-                            alt="Submit Posts"></a>
-                </li>
-                <li class="nav-item mb-3">
+            </div>
+            <div class="d-flex w-50 justify-content-end">
+                <li class="nav-item">
                     <a href="/settings" class="nav-link"><img class="img-menu" src="/media/menu/settings.png"
                             alt="Settings"></a>
                 </li>
-                <li class="nav-item mb-3">
+                <li class="nav-item">
                     <a href="/logout" class="nav-link"><img class="img-menu" src="/media/menu/logout.png"
                             alt="Logout"></a>
                 </li>
-            </ul>
+            </div>
+        </ul>
     </div>
-    <div class="col-12 col-md-10 min-vh-100 order-1 order-md-2">
+    <div class="col-12 col-md-10 min-vh-100 my-5">
         @yield('content')
     </div>
+    <div class="menu-bottom menu-color col-12 row-md-2 d-flex text-center justify-content-center">
+        <ul
+            class="nav nav-pills text-center d-flex flex-wrap justify-content-around flex-sm-row flex-md-row w-100  p-2">
+            <li class="nav-item">
+                <a href="/index" class="nav-link"><img class="img-menu" src="/media/menu/home.png" alt="Home"></a>
+            </li>
+            <li class="nav-item">
+                <a href="/chat" class="nav-link"><img class="img-menu" src="/media/menu/chat.png" alt="Chat"></a>
+            </li>
+            <li class="nav-item">
+                <a href="/posts/create" class="nav-link"><img class="img-menu" src="/media/menu/plus.png"
+                        alt="Submit Posts"></a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link"><img class="img-menu" src="/media/menu/map.png" alt="Map"></a>
+            </li>
+            <li class="nav-item">
+                <a href="/account" class="nav-link"><img class="img-menu" src="/media/menu/profile.png"
+                        alt="Profile"></a>
+            </li>
+        </ul>
+    </div>
+
     <script src="{{ asset('js/like.js') }}"></script>
 </body>
 

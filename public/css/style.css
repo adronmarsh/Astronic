@@ -34,19 +34,22 @@ body {
     height: 26.5rem;
 }
 
-.page-title {
-    padding: 5px;
-    text-align: center;
-    width: 100%;
-    text-align: center;
-}
-
 .setting-icon {
     font-size: 48px;
 }
 
-.menu {
-    border-right: solid 1px black;
+.menu-top {
+    border-bottom: solid 1px black;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+.menu-bottom {
+    border-top: solid 1px black;
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
 }
 
 @media (max-width: 767px) {

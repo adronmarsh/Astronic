@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Settings')
+@section('title') {{ __('messages.settings-title') }} @endsection
 
 @section('content')
     <section class="mt-5 container col-md-6 mx-auto">
@@ -15,7 +15,7 @@
                 @csrf
                 <div class="col-md-12 d-flex justify-content-left flex-wrap">
                     <i class="material-icons setting-icon">language</i>
-                    <div>Idioma</div>
+                    <div>{{ __('messages.settings-language') }}</div>
                 </div>
 
                 <select id="language-select" name="language" class="form-control"
@@ -31,7 +31,7 @@
                 @csrf
                 <div class="col-md-12 d-flex justify-content-left flex-wrap">
                     <i class="material-icons setting-icon">text_format</i>
-                    <div>Fuente</div>
+                    <div>{{ __('messages.settings-font') }}</div>
                 </div>
                 <select id="font-family" name="font-family" class="form-control"
                     onchange="document.getElementById('font-form').submit()">
@@ -49,10 +49,10 @@
                 @csrf
                 <div class="col-md-12 d-flex justify-content-left flex-wrap">
                     <i class="material-icons setting-icon">location_on</i>
-                    <div>Ubicación</div>
+                    <div>{{ __('messages.settings-location') }}</div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-4 col-form-label text-md-right">Latitud</div>
+                    <div class="col-md-4 col-form-label text-md-right">{{ __('messages.settings-latitude') }}</div>
                     <div class="col-md-6">
                         <input id="latitude" type="text" class="form-control @error('latitude') is-invalid @enderror"
                             name="latitude" value="{{ old('latitude') }}" required autocomplete="latitude" autofocus>
@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-md-4 col-form-label text-md-right">Longitud</div>
+                    <div class="col-md-4 col-form-label text-md-right">{{ __('messages.settings-longitude') }}</div>
                     <div class="col-md-6">
                         <input id="longitude" type="text" class="form-control @error('longitude') is-invalid @enderror"
                             name="longitude" value="{{ old('longitude') }}" required autocomplete="longitude" autofocus>
@@ -81,7 +81,7 @@
 
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary mt-2">Guardar ubicación</button>
+                        <button type="submit" class="btn btn-primary mt-2">{{ __('messages.settings-save_location') }}</button>
                     </div>
                 </div>
             </form>
@@ -93,7 +93,7 @@
                     <a href="{{ route('downgrade') }}" class="btn btn-danger btn-block">
                         <div class="d-flex justify-content-center align-items-center">
                             <i class="material-icons setting-icon">arrow_downward</i>
-                            <div>Bajar a la membresía gratuita</div>
+                            <div>{{ __('messages.settings-premium_false') }}</div>
                         </div>
                     </a>
                 </div>
@@ -102,7 +102,7 @@
                     <a href="{{ route('upgrade') }}" class="btn btn-primary btn-block">
                         <div class="d-flex justify-content-center align-items-center">
                             <i class="material-icons setting-icon">upgrade</i>
-                            <div>Suscribirse</div>
+                            <div>{{ __('messages.settings-premium_true') }}</div>
                         </div>
                     </a>
                 </div>

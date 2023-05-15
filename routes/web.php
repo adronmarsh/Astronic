@@ -43,7 +43,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // --------------------- Users ---------------------
-Route::resource('/account', UserController::class)->middleware('auth');
+Route::resource('/account', UserController::class)->middleware(['auth', 'lang']);
 
 // --------------------- Posts ---------------------
 Route::resource('/posts', PostController::class)->middleware(['auth','lang']);

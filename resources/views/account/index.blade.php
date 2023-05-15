@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Cuenta')
+@section('title') {{__('messages.account-title')}} @endsection
 
 @section('content')
     <div class="row d-flex justify-content-left">
@@ -10,12 +10,12 @@
                 alt="Foto de perfil de {{ $user->user }}">
             <div class="d-flex justify-content-center align-items-center">
                 <h1 class="p-3">{{ $user->user }}</h1>
-                <div><a href="{{ route('account.edit', $user->id) }}" class="btn btn-primary">Editar perfil</a></div>
+                <div><a href="{{ route('account.edit', $user->id) }}" class="btn btn-primary">{{__('messages.account-edit')}}</a></div>
             </div>
             <div class="d-flex justify-content-center">
-                <p class="p-3">{{ $user->posts->count() }} posts</p>
-                <p class="p-3">x followers</p>
-                <p class="p-3">x following</p>
+                <p class="p-3">{{ $user->posts->count() }} {{__('messages.account-posts')}}</p>
+                <p class="p-3">x {{__('messages.account-followers')}}</p>
+                <p class="p-3">x {{__('messages.account-following')}}</p>
             </div>
             {{ $user->bio }}
         </div>

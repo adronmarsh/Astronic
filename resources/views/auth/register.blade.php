@@ -1,54 +1,54 @@
 @extends('layout-login')
 
 @section('title')
-    <?php echo trans('messages.register-title'); ?>
+    {{ __('messages.register-title') }}
 @endsection
 
 @section('content')
-    <div>
-        <h1 class="mt-5"><?php echo trans('messages.register-text'); ?></h1>
+    <div class="container">
+        <h1 class="mt-5">{{ __('messages.register-text') }}</h1>
         <a href="/">
-            <img class="img-welcome" src="media/logo.png" alt="Astronic Logo">
+            <img class="img-welcome" src="media/logo.png" alt="{{ __('messages.alt_logo') }}">
         </a>
-        <form action="{{ route('register') }}" method="POST">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="list-unstyled">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form action="{{ route('register') }}" method="POST" class="col-md-6 mx-auto">
             @csrf
-            <label for="rol">
-                <h3 class="mt-5 mb-5 page-title">Tipo de cuenta</h3>
-            </label>
-            <select id="rol" name="rol">
-                <option value="corporation">Empresa</option>
-                <option value="particular">Individual</option>
-            </select>
-            <label for="user">
-                <h3 class="mt-5 mb-5 page-title">Usuario</h3>
-            </label>
-            <input type="text" name="user" id="user">
-            <label for="email">
-                <h3 class="mt-5 mb-5 page-title">Correo electrónico</h3>
-            </label>
-            <input type="email" name="email" id="email">
-            <label for="password">
-                <h3 class="mt-5 mb-5 page-title">Contraseña</h3>
-            </label>
-            <input type="password" name="password" id="password">
-            <label for="password_confirmation">
-                <h3 class="mt-5 mb-5 page-title">Confirmar contraseña</h3>
-            </label>
-            <input type="password" name="password_confirmation" id="password_confirmation">
-            <a href="index">
-                <input type="submit" value="Registrarse" class="btn btn-primary btn-lg rounded mt-5 mb-5">
-            </a>
-            <a href="login">Ya tienes una cuenta? Iniciar sesión</a>
-    </div>
-    </form>
+            <div class="form-group">
+                <label for="rol" class="mt-5 mb-3">{{ __('messages.register-account_type') }}</label>
+                <select id="rol" name="rol" class="form-control">
+                    <option value="corporation">{{ __('messages.register-corporation') }}</option>
+                    <option value="particular">{{ __('messages.register-individual') }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="user" class="mt-5 mb-3">{{ __('messages.login-user') }}</label>
+                <input type="text" name="user" id="user" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="email" class="mt-5 mb-3">{{ __('messages.register-email') }}</label>
+                <input type="email" name="email" id="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password" class="mt-5 mb-3">{{ __('messages.login-password') }}</label>
+                <input type="password" name="password" id="password" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password_confirmation" class="mt-5 mb-3">{{ __('messages.register-confirm_password') }}</label>
+                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
+            </div>
+            <button type="submit"
+                class="btn btn-primary btn-lg rounded mt-5 mb-5">{{ __('messages.register-submit_button') }}</button>
+            <a href="login">{{ __('messages.login-already_registered') }}</a>
+        </form>
 
-    @if ($errors->any())
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
-    </div>
 
+    </div>
 @endsection

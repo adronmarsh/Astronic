@@ -1,36 +1,29 @@
 @extends('layout-login')
 
 @section('title')
-    {{__('messages.login-title')}}
+    {{ __('messages.login-title') }}
 @endsection
 
 @section('content')
     <div>
-        <h1 class="mt-5">{{_('messages.login-title')}}</h1>
+        <h1 class="mt-5">{{ __('messages.login-title') }}</h1>
         <a href="/">
-            <img class="img-welcome" src="media/logo.png" alt="Astronic Logo">
+            <img class="img-welcome" src="media/logo.png" alt="{{ __('messages.alt_logo') }}">
         </a>
+        @isset($error)
+            <div class="alert alert-danger">{{ $error }}</div>
+        @endisset
         <form action="{{ route('login') }}" method="POST">
             @csrf
-            <label for="user">
-                <h3 class="mt-5 mb-5 page-title">{{__('messages.login-text')}}</h3>
-            </label>
-            <br>
-            <input type="text" name="user" id="user">
-            <br>
-            <label for="password">
-                <h3 class="mt-5 mb-5 page-title">{{__('messages.login-password')}}</h3>
-            </label>
-            <br>
-            <input type="password" name="password" id="password">
-            <br>
-            <a href="index">
-                <input type="submit" value="{{__('messages.welcome-button')}}" class="btn btn-primary btn-lg rounded mt-5 mb-5">
-            </a>
+            <div class="form-group">
+                <label for="user" class="mt-5 mb-3">{{ __('messages.login-user') }}</label>
+                <input type="text" class="form-control" name="user" id="user">
+            </div>
+            <div class="form-group">
+                <label for="password" class="mt-5 mb-3">{{ __('messages.login-password') }}</label>
+                <input type="password" class="form-control" name="password" id="password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-5 mb-5">{{ __('messages.welcome-button') }}</button>
         </form>
-    </div>
-    @isset($error)
-        {{ $error }}
-    @endisset
     </div>
 @endsection

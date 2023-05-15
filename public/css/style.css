@@ -21,11 +21,11 @@ body {
 }
 
 .img-menu {
-    width: 4.5rem;
-    height: 4.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
 }
 
-.translucid {
+.menu-color {
     background-color: var(--menu-color);
 }
 
@@ -52,7 +52,7 @@ body {
 @media (max-width: 767px) {
     .menu {
         border-right: 0px solid black;
-        border-bottom: 1px solid black;
+        border-top: 1px solid black;
     }
 }
 
@@ -63,4 +63,12 @@ body {
 
 .avatar-edit {
     cursor: pointer;
+}
+
+input[type="file"] {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+    z-index: -1;
 }

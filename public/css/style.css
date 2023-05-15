@@ -20,6 +20,11 @@ body {
     width: 100%;
 }
 
+.img-logo {
+    width: 15.5rem;
+    height: 3.5rem;
+}
+
 .img-menu {
     width: 3.5rem;
     height: 3.5rem;

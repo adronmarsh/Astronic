@@ -33,7 +33,7 @@
             <div class="w-50 d-flex justify-content-start">
                 <li class="nav-item d-flex align-items-center">
                     <a href="/">
-                        <img class="img-menu" src="/media/logo.svg" alt="">
+                        <img class="img-logo" src="/media/logo.png" alt="{{ __('messages.alt_logo') }}">
                     </a>
                 </li>
             </div>

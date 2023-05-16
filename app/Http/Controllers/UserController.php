@@ -27,7 +27,9 @@ class UserController extends Controller
         $userId = auth()->id();
         $user = User::findOrFail($userId);
         $posts = Post::where('user_id', $userId)->latest()->get();
-        return view('account.index', compact(['user', 'posts']));
+        $followers = Follow::where('user_id', $userId)->count();
+        $following = Follow::where('follower_id', $userId)->count();
+        return view('account.index', compact(['user', 'posts','followers','following']));
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Follow;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Requests\AccountRequest;
@@ -56,9 +57,19 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($user)
+    public function show($userId)
     {
-        //
+        if ($userId == auth()->id()) {
+            return redirect()->route('account.index');
+        }
+        $isFollowing = Follow::where('user_id', $userId)
+            ->where('follower_id', auth()->id())
+            ->exists();
+        $followers = Follow::where('user_id', $userId)->count();
+        $following = Follow::where('follower_id', $userId)->count();
+        $user = User::findOrFail($userId);
+        $posts = Post::where('user_id', $userId)->latest()->get();
+        return view('account.show', compact(['user', 'posts', 'isFollowing', 'followers', 'following']));
     }
 
     /**
@@ -116,11 +127,11 @@ class UserController extends Controller
             $filesystem->write($path, file_get_contents($file));
 
             $url = env('AWS_URL') . $path;
-            $user->avatar = $url;
             if ($user->avatar != null) {
                 $oldAvatar = str_replace(env('AWS_URL'), '', $user->getOriginal('avatar'));
                 $filesystem->delete($oldAvatar);
             }
+            $user->avatar = $url;
         }
         $user->avatar = $user->avatar;
 
@@ -144,5 +155,27 @@ class UserController extends Controller
         $searchTerm = $request->input('searchChat');
         $users = User::where('user', 'LIKE', '%' . $searchTerm . '%')->get();
         return redirect()->route('chat.index', compact('users'));
+    }
+
+
+    public function follow($userId)
+    {
+        $isFollowing = Follow::where('user_id', $userId)
+            ->where('follower_id', auth()->id())
+            ->exists();
+
+        if ($isFollowing) {
+            $follow = Follow::where('user_id', $userId)->where('follower_id', auth()->id())->first();
+            $isFollowing = false;
+            $follow->delete();
+        } else {
+            $follow = new Follow;
+            $follow->user_id = $userId;
+            $follow->follower_id = auth()->id();
+            $isFollowing = true;
+            $follow->save();
+        }
+
+        return redirect()->back();
     }
 }

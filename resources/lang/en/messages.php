@@ -23,6 +23,8 @@ return [
     'settings-text' => 'Settings',
     'account-title' => 'Account',
     'account-edit' => 'Edit profile',
+    'account-follow' => 'Follow',
+    'account-unfollow' => 'Unfollow',
     'account-posts' => 'posts',
     'account-followers' => 'followers',
     'account-following' => 'following',

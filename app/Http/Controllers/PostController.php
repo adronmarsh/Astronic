@@ -105,10 +105,6 @@ class PostController extends Controller
         //
     }
 
-    // public function upload()
-    // {
-    //     return view('posts.upload');
-    // }
 
     public function like($postId)
     {
@@ -120,7 +116,6 @@ class PostController extends Controller
             $like = Like::where('post_id', $postId)->where('user_id', $userId)->first();
             $like->delete();
 
-            return response()->json(['likes_count' => $likesCount]);
         } else {
 
             $like = new Like();
@@ -128,7 +123,7 @@ class PostController extends Controller
             $like->user_id = auth()->id();
             $like->save();
 
-            return response()->json(['likes_count' => $likesCount]);
         }
+        return response()->json(['likes_count' => $likesCount]);
     }
 }

@@ -10,10 +10,12 @@
                     <div class="card">
                         <div class="card-body d-flex justify-content-between">
                             <div>
-                                <img class="avatar rounded-circle img-ms"
-                                    src="{{ $post->user->avatar != null ? $post->user->avatar : asset('media/default-avatar.png') }}"
-                                    alt="Foto de perfil de {{ $post->user->user }}">
-                                {{ $post->user->user }}
+                                <a href="/account/{{ $post->user->id }}" class="text-decoration-none text-reset">
+                                    <img class="avatar rounded-circle img-ms"
+                                        src="{{ $post->user->avatar != null ? $post->user->avatar : asset('media/default-avatar.png') }}"
+                                        alt="Foto de perfil de {{ $post->user->user }}">
+                                    {{ $post->user->user }}
+                                </a>
                             </div>
                             <div>
                                 <?php $liked = $post->likes->contains('user_id', auth()->id()); ?>
@@ -21,7 +23,8 @@
                                     data-post-id="{{ $post->id }}">
                                     <i class="fa fa-heart {{ $liked ? 'text-danger' : 'text-dark' }}"></i>
                                 </button>
-                                <span class="like-count" data-post-id="{{ $post->id }}">{{ $post->likes->count() }}</span>
+                                <span class="like-count"
+                                    data-post-id="{{ $post->id }}">{{ $post->likes->count() }}</span>
                             </div>
                         </div>
                         @if ($post->url)

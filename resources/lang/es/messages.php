@@ -23,6 +23,8 @@ return [
     'settings-text' => 'Configuración',
     'account-title' => 'Cuenta',
     'account-edit' => 'Editar perfil',
+    'account-follow' => 'Seguir',
+    'account-unfollow' => 'Dejar de seguir',
     'account-posts' => 'publicaciones',
     'account-followers' => 'seguidores',
     'account-following' => 'siguiendo',

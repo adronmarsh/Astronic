@@ -44,6 +44,11 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // --------------------- Users ---------------------
 Route::resource('/account', UserController::class)->middleware(['auth', 'lang']);
+Route::get('/account/{user}', [UserController::class, 'show'])->middleware(['auth', 'lang']);
+Route::get('/follow/{user}', [UserController::class, 'follow'])->name('follow')->middleware(['auth', 'lang']);
+
+// --------------------- Follows ---------------------
+Route::post('/users/{user}/follow', [UserController::class, 'follow'])->name('users.follow')->middleware(['auth', 'lang']);
 
 // --------------------- Posts ---------------------
 Route::resource('/posts', PostController::class)->middleware(['auth','lang']);
@@ -51,7 +56,7 @@ Route::post('/posts/{id}/like', [PostController::class, 'like'])->name('posts.li
 
 // --------------------- Chat ---------------------
 Route::resource('/chat', ChatController::class)->middleware(['auth', 'lang']);
-Route::post('/search-chat', [UserController::class, 'search'])->name('searchChat')->middleware('auth');
+Route::post('/search-chat', [ChatController::class, 'search'])->name('searchChat')->middleware('auth');
 Route::get('/chats/{userId}/{receiverId}', [ChatController::class, 'getChatMessages'])->middleware(['auth', 'lang']);
 
 

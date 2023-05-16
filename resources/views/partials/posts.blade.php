@@ -1,6 +1,6 @@
 <div class="card-body d-flex justify-content-between">
     <div>
-        <a href="/account/{{ $post->user->id }}" class="text-decoration-none text-reset">
+        <a href="/users/{{ $post->user->id }}" class="text-decoration-none text-reset">
             <img class="avatar rounded-circle img-ms"
                 src="{{ $post->user->avatar != null ? $post->user->avatar : asset('media/default-avatar.png') }}"
                 alt="Foto de perfil de {{ $post->user->user }}">

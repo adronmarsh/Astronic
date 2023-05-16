@@ -24,12 +24,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $userId = auth()->id();
-        $user = User::findOrFail($userId);
-        $posts = Post::where('user_id', $userId)->latest()->get();
-        $followers = Follow::where('user_id', $userId)->count();
-        $following = Follow::where('follower_id', $userId)->count();
-        return view('account.index', compact(['user', 'posts','followers','following']));
+        //
     }
 
     /**
@@ -62,7 +57,7 @@ class UserController extends Controller
     public function show($userId)
     {
         if ($userId == auth()->id()) {
-            return redirect()->route('account.index');
+            return redirect()->route('account');
         }
         $isFollowing = Follow::where('user_id', $userId)
             ->where('follower_id', auth()->id())
@@ -71,7 +66,7 @@ class UserController extends Controller
         $following = Follow::where('follower_id', $userId)->count();
         $user = User::findOrFail($userId);
         $posts = Post::where('user_id', $userId)->latest()->get();
-        return view('account.show', compact(['user', 'posts', 'isFollowing', 'followers', 'following']));
+        return view('user.show', compact(['user', 'posts', 'isFollowing', 'followers', 'following']));
     }
 
     /**
@@ -85,7 +80,7 @@ class UserController extends Controller
         $userId = auth()->id();
         $user = User::findOrFail($userId);
         $posts = Post::where('user_id', $userId)->latest()->get();
-        return view('account.edit', compact(['user', 'posts']));
+        return view('user.edit', compact(['user', 'posts']));
     }
 
     /**
@@ -138,7 +133,7 @@ class UserController extends Controller
         $user->avatar = $user->avatar;
 
         $user->save();
-        return redirect()->route('account.index');
+        return redirect()->route('account');
     }
 
     /**
@@ -151,6 +146,17 @@ class UserController extends Controller
     {
         //
     }
+
+    public function account()
+    {
+        $userId = auth()->id();
+        $user = User::findOrFail($userId);
+        $posts = Post::where('user_id', $userId)->latest()->get();
+        $followers = Follow::where('user_id', $userId)->count();
+        $following = Follow::where('follower_id', $userId)->count();
+        return view('user.account', compact(['user', 'posts', 'followers', 'following']));
+    }
+
 
     public function search(Request $request)
     {

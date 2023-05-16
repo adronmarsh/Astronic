@@ -12,7 +12,7 @@
                 alt="Foto de perfil de {{ $user->user }}">
             <div class="d-flex justify-content-center align-items-center">
                 <h1 class="p-3">{{ $user->user }}</h1>
-                <div><a href="{{ route('account.edit', $user->id) }}"
+                <div><a href="{{ route('users.edit', $user->id) }}"
                         class="btn btn-primary">{{ __('messages.account-edit') }}</a></div>
             </div>
             <div class="d-flex justify-content-center">

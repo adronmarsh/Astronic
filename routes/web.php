@@ -44,11 +44,9 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // --------------------- Users ---------------------
-Route::resource('/account', UserController::class)->middleware(['auth', 'lang']);
-Route::get('/account/{user}', [UserController::class, 'show'])->middleware(['auth', 'lang']);
+Route::resource('/users', UserController::class)->middleware(['auth', 'lang']);
+Route::get('/account', [UserController::class, 'account'])->name('account')->middleware(['auth', 'lang']);
 Route::get('/follow/{user}', [UserController::class, 'follow'])->name('follow')->middleware(['auth', 'lang']);
-
-// --------------------- Follows ---------------------
 Route::post('/users/{user}/follow', [UserController::class, 'follow'])->name('users.follow')->middleware(['auth', 'lang']);
 
 // --------------------- Posts ---------------------

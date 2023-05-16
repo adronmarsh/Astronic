@@ -44,21 +44,14 @@ class ChatController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $receiverId)
     {
-        // Crear un nuevo chat entre el usuario y otro participante
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'receiver_id' => 'required',
-        ]);
-
-        $chat = Chat::create([
-            'name' => $validatedData['name'],
-            'user_id' => auth()->id(),
-            'receiver_id' => $validatedData['receiver_id'],
-        ]);
-
-        return redirect()->route('chat.show', $chat->id);
+        $chat = new Chat;
+        $chat->user_id = auth()->id();
+        $chat->receiver_id = $receiverId;
+        $chat->message = $request->input('message');
+        $chat->save();
+        return redirect()->back();
     }
 
     /**
@@ -70,18 +63,7 @@ class ChatController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Actualizar la conversación en curso
-        $validatedData = $request->validate([
-            'message' => 'required',
-        ]);
-
-        $chat = Chat::findOrFail($id);
-        $chat->messages()->create([
-            'user_id' => auth()->id(),
-            'message' => $validatedData['message'],
-        ]);
-
-        return redirect()->back();
+        //
     }
 
     /**
@@ -92,7 +74,6 @@ class ChatController extends Controller
      */
     public function destroy($id)
     {
-        // Eliminar un chat existente
         $chat = Chat::findOrFail($id);
         $chat->delete();
         return redirect()->route('chat.index');
@@ -113,6 +94,5 @@ class ChatController extends Controller
 
         return redirect()->back()->with('messages', $messages);
 
-        // return view('chat', compact('messages'));
     }
 }

@@ -3,7 +3,7 @@
 @section('title', 'Cuenta')
 
 @section('content')
-    <form method="POST" action="{{ route('account.update', $user->id) }}" enctype="multipart/form-data" class="col-md-6 mx-auto">
+    <form method="POST" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data" class="col-md-6 mx-auto">
         @csrf
         @method('PUT')
         <h1 class="mt-5">Editar perfil</h1>

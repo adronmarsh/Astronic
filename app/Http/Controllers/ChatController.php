@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Chat;
+use App\Models\User;
 
 class ChatController extends Controller
 {
@@ -30,13 +31,23 @@ class ChatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($receiverId)
     {
-        // Mostrar la conversación entre el usuario y otro participante del chat
-        $chat = Chat::findOrFail($id);
-        $messages = $chat->messages;
-        return view('chat.show', compact('chat', 'messages'));
+        $userId = auth()->id();
+        $chat = Chat::where(function ($query) use ($userId, $receiverId) {
+            $query->where('user_id', $userId)->where('receiver_id', $receiverId);
+        })->orWhere(function ($query) use ($userId, $receiverId) {
+            $query->where('user_id', $receiverId)->where('receiver_id', $userId);
+        })->first();
+
+        if ($chat == null) {
+            return redirect()->route('chat.create', compact('receiverId'));
+        }
+        $messages = $chat->messages()->orderBy('created_at', 'asc')->get();
+        $receiver = User::where('id', $receiverId)->first();
+        return view('chat.show', compact('chat', 'receiver', 'messages'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -79,20 +90,12 @@ class ChatController extends Controller
         return redirect()->route('chat.index');
     }
 
-    public function getChatMessages($userId, $receiverId)
+    public function create($receiverId)
     {
-        $messages = Chat::where(function ($query) use ($userId, $receiverId) {
-                        $query->where('user_id', $userId)
-                              ->where('receiver_id', $receiverId);
-                    })
-                    ->orWhere(function ($query) use ($userId, $receiverId) {
-                        $query->where('user_id', $receiverId)
-                              ->where('receiver_id', $userId);
-                    })
-                    ->orderBy('created_at', 'asc')
-                    ->get();
-
-        return redirect()->back()->with('messages', $messages);
-
+        $chat = new Chat;
+        $chat->user_id = auth()->id();
+        $chat->receiver_id = $receiverId;
+        $chat->save();
+        return redirect()->route('chat.show', $receiverId);
     }
 }

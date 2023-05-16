@@ -66,7 +66,7 @@
                         alt="Submit Posts"></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link"><img class="img-menu" src="/media/menu/map.png" alt="Map"></a>
+                <a href="/users" class="nav-link"><img class="img-menu" src="/media/menu/map.png" alt="Map"></a>
             </li>
             <li class="nav-item">
                 <a href="/account" class="nav-link"><img class="img-menu" src="/media/menu/profile.png"
@@ -77,6 +77,7 @@
 
     <script src="{{ asset('js/like.js') }}"></script>
     <script src="{{ asset('js/comment.js') }}"></script>
+    <script src="{{ asset('js/chat.js') }}"></script>
 </body>
 
 </html>

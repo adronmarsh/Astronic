@@ -7,10 +7,8 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\LikeController;
-use App\Models\Chat;
+use App\Http\Controllers\MessageController;
 use App\Models\Post;
-use App\Models\User;
 
 
 /*
@@ -58,9 +56,10 @@ Route::resource('/comments', CommentController::class)->middleware(['auth','lang
 
 // --------------------- Chat ---------------------
 Route::resource('/chat', ChatController::class)->middleware(['auth', 'lang']);
-Route::post('/search-chat', [ChatController::class, 'search'])->name('searchChat')->middleware('auth');
-Route::get('/chats/{userId}/{receiverId}', [ChatController::class, 'getChatMessages'])->middleware(['auth', 'lang']);
+Route::get('/chat/create/{receiverId}', [ChatController::class, 'create'])->name('chat.create')->middleware('auth');
 
+// --------------------- Chat ---------------------
+Route::resource('/messages', MessageController::class)->middleware(['auth', 'lang']);
 
 // --------------------- Settings ---------------------
 Route::get('/settings', [SettingController::class, 'index'])->name('settings')->middleware(['auth', 'lang']);

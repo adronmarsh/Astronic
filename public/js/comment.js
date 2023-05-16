@@ -6,3 +6,28 @@ function toggleComments(postId) {
         commentsDiv.style.display = 'none';
     }
 }
+
+function submitComment(postId) {
+    var form = $('#commentForm-' + postId);
+    var formData = form.serialize();
+
+    var token = $('meta[name="csrf-token"]').attr('content');
+    formData += '&_token=' + encodeURIComponent(token);
+
+    $.ajax({
+        type: 'POST',
+        url: '/comments',
+        data: formData,
+        success: function (response) {
+            var commentsSection = $('#comments-' + postId).find('.card-body:last');
+            commentsSection.append(response.commentHtml);
+            form.trigger('reset');
+
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
+
+
+}

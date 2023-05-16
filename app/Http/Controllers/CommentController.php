@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
+use App\Models\Post;
+use Illuminate\Support\Facades\View;
 
 class CommentController extends Controller
 {
@@ -33,6 +35,7 @@ class CommentController extends Controller
         $comment->user_id = auth()->id();
         $comment->content = $request['content'];
         $comment->save();
+
         return redirect()->back();
 
     }
@@ -68,4 +71,5 @@ class CommentController extends Controller
     {
         //
     }
+
 }

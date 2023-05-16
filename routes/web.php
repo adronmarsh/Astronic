@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Models\Chat;
 use App\Models\Post;
@@ -53,6 +54,9 @@ Route::post('/users/{user}/follow', [UserController::class, 'follow'])->name('us
 // --------------------- Posts ---------------------
 Route::resource('/posts', PostController::class)->middleware(['auth','lang']);
 Route::post('/posts/{id}/like', [PostController::class, 'like'])->name('posts.like')->middleware(['auth', 'lang']);
+
+// --------------------- Comments ---------------------
+Route::resource('/comments', CommentController::class)->middleware(['auth','lang']);
 
 // --------------------- Chat ---------------------
 Route::resource('/chat', ChatController::class)->middleware(['auth', 'lang']);

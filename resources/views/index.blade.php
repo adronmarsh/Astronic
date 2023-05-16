@@ -40,6 +40,27 @@
                             <h5 class="card-title">{{ $post->title }}</h5>
                             <p class="card-text">{{ $post->content }}</p>
                         </div>
+
+                        <div class="card-body">
+                            <form action="/comments" method="POST">
+                                @csrf
+                                <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                <div class="form-group">
+                                    <textarea name="content" class="form-control" placeholder="Escribe tu comentario" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Comentar</button>
+                            </form>
+                        </div>
+
+                        <div class="card-body">
+                            <h5>Comentarios:</h5>
+                            @foreach ($post->comments as $comment)
+                                <div class="mb-3">
+                                    <strong>{{ $comment->user->user }}</strong>
+                                    <p>{{ $comment->content }}</p>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             @endforeach

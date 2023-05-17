@@ -18,22 +18,25 @@
                     <strong>{{ $comment->user->user }}</strong>
                     <span id="comment-{{ $comment->id }}-content">{{ $comment->content }}</span>
                 </p>
-                <div id="comment-{{ $comment->id }}-edit-form" style="display: none;">
-                    <form action="{{ route('comments.update', $comment->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <textarea name="content" rows="3">{{ $comment->content }}</textarea>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </form>
-                </div>
-                <div class="options" id="comment-{{ $comment->id }}-options" style="display: none;">
-                    <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-link btn-sm text-danger">Eliminar</button>
-                    </form>
-                    <button class="btn btn-link btn-sm" onclick="showEditForm({{ $comment->id }})">Editar</button>
-                </div>
+                @if (Auth::check() && $comment->user_id == Auth::id())
+                    <div id="comment-{{ $comment->id }}-edit-form" style="display: none;">
+                        <form action="{{ route('comments.update', $comment->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <textarea name="content" rows="3">{{ $comment->content }}</textarea>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </form>
+                    </div>
+                    <div class="options" id="comment-{{ $comment->id }}-options" style="display: none;">
+                        <form action="{{ route('comments.destroy', $comment->id) }}" method="POST"
+                            style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-link btn-sm text-danger">Eliminar</button>
+                        </form>
+                        <button class="btn btn-link btn-sm" onclick="showEditForm({{ $comment->id }})">Editar</button>
+                    </div>
+                @endif
             </div>
         @endforeach
     </div>

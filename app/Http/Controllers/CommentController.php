@@ -60,6 +60,10 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
+        if ($comment->user_id != Auth()->id()) {
+            abort(403, 'No tienes permisos para actualizar este comentario.');
+        }
+
         $comment->content = $request->input('content');
         $comment->save();
 

@@ -11,14 +11,17 @@
                     alt="Foto de perfil de {{ $receiver->user }}">
                 <h1>{{ $receiver->user }}</h1>
 
-                <div class="messages">
-                    @foreach ($messages as $message)
-                        <div class="message @if ($message->user_id === Auth::user()->id) text-end @else text-start @endif">
-                            <div class="m-1 message-content d-inline-block d-inline-block rounded @if ($message->user_id === $receiver->id) bg-white text-dark @else bg-primary text-white @endif">
-                                <p class="p-2 m-0">{{ $message->content }}</p>
+                <div class="chat-container">
+                    <div class="messages">
+                        @foreach ($messages as $message)
+                            <div class="message @if ($message->user_id === Auth::user()->id) text-end @else text-start @endif">
+                                <div
+                                    class="m-1 message-content d-inline-block d-inline-block rounded @if ($message->user_id === $receiver->id) bg-white text-dark @else bg-primary text-white @endif">
+                                    <p class="p-2 m-0">{{ $message->content }}</p>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
 
                 <form method="POST" action="{{ route('messages.store', $chat->id) }}" id="message-form">
@@ -41,4 +44,3 @@
     </div>
     <div class="mt-5"></div>
 @endsection
-@push('scripts')

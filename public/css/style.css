@@ -80,3 +80,8 @@ input[type="file"] {
     position: absolute;
     z-index: -1;
 }
+
+.chat-container {
+    height: 30vw;
+    overflow-y: scroll;
+}

@@ -37,7 +37,6 @@ class CommentController extends Controller
         $comment->save();
 
         return redirect()->back();
-
     }
 
     /**
@@ -59,9 +58,12 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Comment $comment)
     {
-        //
+        $comment->content = $request->input('content');
+        $comment->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -69,7 +71,8 @@ class CommentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+        return redirect()->back();
     }
-
 }

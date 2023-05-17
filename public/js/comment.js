@@ -31,3 +31,9 @@ function submitComment(postId) {
 
 
 }
+
+function showEditForm(commentId) {
+    // Oculta el contenido del comentario y muestra el formulario de edición
+    document.getElementById(`comment-${commentId}-content`).style.display = 'none';
+    document.getElementById(`comment-${commentId}-edit-form`).style.display = 'block';
+}

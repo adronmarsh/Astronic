@@ -13,14 +13,13 @@
             <div class="d-flex justify-content-center align-items-center">
                 <h1 class="p-3">{{ $user->user }}</h1>
                 <div class="p-3">
-                    <a href="{{ route('follow', $user->id) }}" class="btn btn-primary">
-                        {{ $isFollowing ? __('messages.account-unfollow') : __('messages.account-follow') }}
+                    <a href="{{ route('follow', $user->id) }}"
+                        class="btn btn-primary">{{ $isFollowing ? __('messages.account-unfollow') : __('messages.account-follow') }}
                     </a>
                 </div>
-                    <a href="{{ route('chat.show', $user->id) }}">
-                        <i class="fa fa-regular fa-envelope"></i>
-                    </a>
-                </div>
+                <a href="{{ route('chat.show', $user->id) }}">
+                    <i class="fa fa-regular fa-envelope"></i>
+                </a>
             </div>
 
             <div class="d-flex justify-content-center">

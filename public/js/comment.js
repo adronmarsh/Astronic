@@ -33,7 +33,15 @@ function submitComment(postId) {
 }
 
 function showEditForm(commentId) {
-    // Oculta el contenido del comentario y muestra el formulario de edición
     document.getElementById(`comment-${commentId}-content`).style.display = 'none';
     document.getElementById(`comment-${commentId}-edit-form`).style.display = 'block';
+}
+
+function toggleOptions(commentId) {
+    var optionsDiv = document.getElementById("comment-" + commentId + "-options");
+    if (optionsDiv.style.display === "none") {
+        optionsDiv.style.display = "block";
+    } else {
+        optionsDiv.style.display = "none";
+    }
 }

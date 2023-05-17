@@ -14,7 +14,7 @@
         <h4>Comentarios</h4>
         @foreach ($post->comments as $comment)
             <div class="mb-3">
-                <p class="text-start">
+                <p class="text-start" onclick="toggleOptions({{ $comment->id }})">
                     <strong>{{ $comment->user->user }}</strong>
                     <span id="comment-{{ $comment->id }}-content">{{ $comment->content }}</span>
                 </p>
@@ -26,15 +26,16 @@
                         <button type="submit" class="btn btn-primary">Guardar</button>
                     </form>
                 </div>
-                <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" style="display: inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-link btn-sm text-danger">Eliminar</button>
-                </form>
-                <button class="btn btn-link btn-sm" onclick="showEditForm({{ $comment->id }})">Editar</button>
+                <div class="options" id="comment-{{ $comment->id }}-options" style="display: none;">
+                    <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-link btn-sm text-danger">Eliminar</button>
+                    </form>
+                    <button class="btn btn-link btn-sm" onclick="showEditForm({{ $comment->id }})">Editar</button>
+                </div>
             </div>
         @endforeach
     </div>
-
 
 </div>

@@ -23,7 +23,7 @@
         <main class="d-flex justify-content-center align-items-center flex-column flex-grow-1">
             @yield('content')
         </main>
-        <footer class="mt-auto py-3 footer col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 d-flex justify-content-center align-items-center footer">
+        <footer class="mt-5 py-3 footer col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 d-flex justify-content-center align-items-center footer">
             Astronic &#169;
         </footer>
     </div>

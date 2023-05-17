@@ -8,10 +8,10 @@
     <div>
         <h1 class="mt-5">{{ __('messages.login-title') }}</h1>
         <a href="/">
-            <img class="img-welcome" src="media/logo.svg" alt="{{ __('messages.alt_logo') }}">
+            <img class="img-welcome mt-5" src="media/logo.svg" alt="{{ __('messages.alt_logo') }}">
         </a>
         @isset($error)
-            <div class="alert alert-danger">{{ $error }}</div>
+            <div class="alert alert-danger mt-5">{{ $error }}</div>
         @endisset
         <form action="{{ route('login') }}" method="POST">
             @csrf

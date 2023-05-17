@@ -45,12 +45,19 @@ class LoginController extends Controller
     {
         $credenciales = $request->only('user', 'password');
 
-        if (Auth::guard('web')->attempt($credenciales)) {
+        if (filter_var($credenciales['user'], FILTER_VALIDATE_EMAIL)) {
+            $field = 'email';
+        } else {
+            $field = 'user';
+        }
+
+        if (Auth::guard('web')->attempt([$field => $credenciales['user'], 'password' => $credenciales['password']])) {
             $request->session()->regenerateToken();
             return redirect()->route('index');
-        } else
+        } else {
             $error = 'El usuario o contraseña introducidos no son correctos';
-        return view('auth.login', compact('error'));
+            return view('auth.login', compact('error'));
+        }
     }
 
     public function logout(Request $request)

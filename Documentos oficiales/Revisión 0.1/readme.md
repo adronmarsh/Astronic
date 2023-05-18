@@ -3,6 +3,10 @@
 
 https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams
 
+PlumUML va en Gitlab
+https://docs.gitlab.com/ee/administration/integration/plantuml.html
+https://plantuml.com/es/
+
 
 ## Creating Mermaid diagrams
 

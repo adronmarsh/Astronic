@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
+<?php
+$user = Auth::user();
+// dump($user)
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -29,7 +33,8 @@
 <body class="background row d-flex flex-row flex-wrap justify-content-center text-center m-0 p-0'"
     style="font-family: {{ session('fontFamily', 'Arial, sans-serif') }};">
     <div class="menu-top menu-color col-12 row-md-2 d-flex text-center justify-content-center">
-        <ul class="nav nav-pills text-center d-flex flex-wrap justify-content-center flex-sm-row flex-md-row w-100  p-2">
+        <ul
+            class="nav nav-pills text-center d-flex flex-wrap justify-content-center flex-sm-row flex-md-row w-100  p-2">
             <div class="astronic-logo w-50 d-flex justify-content-start">
                 <li class="nav-item d-flex align-items-center">
                     <a href="/">
@@ -38,10 +43,12 @@
                 </li>
             </div>
             <div class="d-flex w-50 justify-content-end">
-                <li class="nav-item">
-                    <a href="/posts/create" class="nav-link"><img class="img-menu" src="/media/menu/plus.png"
-                            alt="Submit Posts"></a>
-                </li>
+                @if ($user->rol == 'corporation')
+                    <li class="nav-item">
+                        <a href="/posts/create" class="nav-link"><img class="img-menu" src="/media/menu/plus.png"
+                                alt="Submit Posts"></a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a href="/settings" class="nav-link"><img class="img-menu" src="/media/menu/settings.png"
                             alt="Settings"></a>

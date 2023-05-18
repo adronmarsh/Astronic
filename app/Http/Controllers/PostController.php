@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Like;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
@@ -27,6 +28,11 @@ class PostController extends Controller
      */
     public function create()
     {
+        $userId = auth()->id();
+        $user = User::findOrFail($userId);
+        if ($user->rol!='corporation') {
+            return redirect()->route('/');
+        }
         return view('posts.create');
     }
 
@@ -35,6 +41,11 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+        $userId = auth()->id();
+        $user = User::findOrFail($userId);
+        if ($user->rol=='particular'){
+            abort(403, 'No tienes permisos para publicar un post.');
+        }
         $post = new Post;
         $post->title = $request['title'];
         $post->content = $request['content'];

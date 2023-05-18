@@ -62,6 +62,10 @@ body {
         border-right: 0px solid black;
         border-top: 1px solid black;
     }
+
+    .astronic-logo{
+        opacity: 0;
+    }
 }
 
 .avatar {

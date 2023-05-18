@@ -30,7 +30,7 @@
     style="font-family: {{ session('fontFamily', 'Arial, sans-serif') }};">
     <div class="menu-top menu-color col-12 row-md-2 d-flex text-center justify-content-center">
         <ul class="nav nav-pills text-center d-flex flex-wrap justify-content-center flex-sm-row flex-md-row w-100  p-2">
-            <div class="w-50 d-flex justify-content-start">
+            <div class="astronic-logo w-50 d-flex justify-content-start">
                 <li class="nav-item d-flex align-items-center">
                     <a href="/">
                         <img class="img-logo" src="/media/logo.png" alt="{{ __('messages.alt_logo') }}">
@@ -39,8 +39,16 @@
             </div>
             <div class="d-flex w-50 justify-content-end">
                 <li class="nav-item">
+                    <a href="/posts/create" class="nav-link"><img class="img-menu" src="/media/menu/plus.png"
+                            alt="Submit Posts"></a>
+                </li>
+                <li class="nav-item">
                     <a href="/settings" class="nav-link"><img class="img-menu" src="/media/menu/settings.png"
                             alt="Settings"></a>
+                </li>
+                <li class="nav-item">
+                    <a href="/account" class="nav-link"><img class="img-menu" src="/media/menu/profile.png"
+                            alt="Profile"></a>
                 </li>
                 <li class="nav-item">
                     <a href="/logout" class="nav-link"><img class="img-menu" src="/media/menu/logout.png"
@@ -61,17 +69,11 @@
             <li class="nav-item">
                 <a href="/chat" class="nav-link"><img class="img-menu" src="/media/menu/chat.png" alt="Chat"></a>
             </li>
-            <li class="nav-item">
-                <a href="/posts/create" class="nav-link"><img class="img-menu" src="/media/menu/plus.png"
-                        alt="Submit Posts"></a>
-            </li>
+
             <li class="nav-item">
                 <a href="/users" class="nav-link"><img class="img-menu" src="/media/menu/map.png" alt="Map"></a>
             </li>
-            <li class="nav-item">
-                <a href="/account" class="nav-link"><img class="img-menu" src="/media/menu/profile.png"
-                        alt="Profile"></a>
-            </li>
+
         </ul>
     </div>
 

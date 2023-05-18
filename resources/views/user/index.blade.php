@@ -8,7 +8,7 @@
             <h2>Usuarios</h2>
             <ul class="list-group">
                 @foreach ($users as $user)
-                    <li class="list-group-item">
+                    <li class="list-group-item text-start">
                         <a href="/users/{{ $user->id }}" class="text-decoration-none text-reset">
                             <img class="avatar rounded-circle img-ms"
                                 src="{{ $user->avatar != null ? $user->avatar : asset('media/default-avatar.png') }}"

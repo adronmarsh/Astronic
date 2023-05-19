@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-<?php
-$user = Auth::user();
-// dump($user)
-?>
 
 <head>
     <meta charset="UTF-8">
@@ -43,12 +39,14 @@ $user = Auth::user();
                 </li>
             </div>
             <div class="d-flex w-50 justify-content-end">
-                @if ($user->rol == 'corporation')
-                    <li class="nav-item">
-                        <a href="/posts/create" class="nav-link"><img class="img-menu" src="/media/menu/plus.png"
-                                alt="Submit Posts"></a>
-                    </li>
-                @endif
+                @auth
+                    @if (Auth::user()->rol == 'corporation')
+                        <li class="nav-item">
+                            <a href="/posts/create" class="nav-link"><img class="img-menu" src="/media/menu/plus.png"
+                                    alt="Submit Posts"></a>
+                        </li>
+                    @endif
+                @endauth
                 <li class="nav-item">
                     <a href="/settings" class="nav-link"><img class="img-menu" src="/media/menu/settings.png"
                             alt="Settings"></a>

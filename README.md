@@ -1,66 +1,55 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://github.com/adronmarsh/Astronic" target="_blank"><img src="https://astronicservice.s3.eu-west-3.amazonaws.com/logotipo.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFAaCWV1LXdlc3QtMyJGMEQCIHHepDgIIww7iqRNyuFoYMcL%2BnmmbzrpEJem7jEMwJi0AiBKQYCWZsbUZMBAyfqSL%2F%2BSQl5BZtpyS4JAIssOMR3D9yrkAgh5EAIaDDQ3NjM1MTkwNTQ2MyIMq62eFTpmYfPUQOMHKsEChV1H31In6uIdg7mniT%2BOoYJF6qy4ap%2FNTtxyJaxaIEAgpSvy18411%2BV2sAeFnGJiYb4N7AjIl3k03BO6sDfCwzotuMpCRyA%2B4uH6Jyyvh94xkEvIQbqaU1RsOHjb0DXj0LoSGiC%2BXmI88KWyFUZbjhjhoYZt%2FhDha9pQWYlwapPtDeEKCZaQedoXQYH4gm4RYsytYpa3PxVwOeBhdJ0AJ0oh3cinjehnko3roVpKjh0%2F5472SAQXBsbyDT30lNwFH1Z9FYr8fujcv3V4pgd%2FMGFnSYJyfIXp40UWEtPyxQtiJ%2BdDyvwbwk39ZgOWdO7W4zgwczj74jw0HTUmC%2FkDRBThcfSSZJhbbh1379ftksShpPPCzER8zP5wTOFI1r5oqvjRzckA46Qnj3XfOhS9z%2BifJIs%2BmB4dL5zuU9zF6px9MPC2nqMGOrQCGKNarv%2B4BEeaxGYGjPbKSO7ordZ9KY186uqGkbZ9%2BoE0Q%2F1RvZaL6%2F3Hf7YfgqwSPPaLuyypifRZCnJXNTocjyPzQM7u2WN2sEX8%2FUsDCigtEGzTmmYciDjb9F13rTZB57gDB5%2FEt2Kcvw0RDS3oDTvE23L0%2Fmw%2FFKkUYtlW7Ko0IsfDRHtxwArkGGbmvJE3jNbmFsD5XjcvpvBcaLoGYb%2FlhVFGLYi2hYVhgGvoB%2BZRThu0Wxq8Nk4s6lDK1H6dj2nUjYqfV6TQwNVLlwoqgl5B7q2meq4%2FEW5%2F6awOxzVjiPmQN5DHKQ5aZ4t9k62ErpMaEgPj%2FjbsMWPb9RB0H7THkFYcrMREMLZhfzP9laQPVunBFSYDdlrtxHBaAev9WdWSyoAryXfzbPvf%2BeeujFUUqGw%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230519T172620Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAW52GJH23UUBBJTFX%2F20230519%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Signature=afe08fea4d8533cf27028332b5abac7dbde37c461624d18971df3696d676928d" width="400" alt="Astronic Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Astronic
+## ¿Qué es Astronic?
 
-## About Laravel
+Astronic es una red social creada para la promoción e información de empresas. Este proyecto tiene como objetivo proporcionar una plataforma intuitiva y eficiente que permita a las empresas alcanzar a su audiencia de manera directa y efectiva.  
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Ventajas para las empresas:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Promociona tus productos.
+- Atrae nuevos clientes.
+- Contacta de forma directa con tus clientes.
+- Aumenta tu networking.
+- Vende tus productos de forma rápida y segura (futuro).
+- Análisis de datos personalizado (futuro).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Ventajas para las personas:
 
-## Learning Laravel
+- Descubre productos y servicios.
+- Accede a ofertas y promociones exclusivas.
+- Contacta de forma directa con las empresas.
+- Encuentra los mejores negocios a tu alrededor.
+- Lee opiniones sobre los productos.
+- Compra en línea de forma segura (futuro).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Más cosas sobre Astronic
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Astronic utiliza un servidor público S3 de Amazon para subir sus publicaciones por lo que cualquier contenido subido a la plataforma quedará expuesto de forma pública.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Instalación y configuración
 
-## Laravel Sponsors
+1. Clona el repositorio de Astronic en tu máquina local.
+```copyable
+git clone https://github.com/adronmarsh/Astronic.git
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Descarga e instala [composer](https://getcomposer.org/) en el directorio del proyecto.
+```copyable
+composer install
+``` 
+1. Descarga [XAMPP](https://www.apachefriends.org/es/download.html) e incia Apache y MySQL.
+2. Configura el archivo de entorno .env. Puedes copiar el archivo de ejemplo .env.example y renombrarlo a .env. Será neceario configuar el acceso a la base de datos y crear una clave para subir imágenes al servidor.
+3. Ejecuta las migraciones.
+```copyyable
+php artisan migrate
+```
+1. Inicia el servidor de Laravel.
+```copyable
+php artisan serve
+```
+1. Accede a la URL en tu navegador.
+```copyable
+http://127.0.0.1:8000/
+```
+1. ¡Listo! Si tienes cualquier duda sobre la instalación escribe un correo a adron.marsh@gmail.com

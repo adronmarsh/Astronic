@@ -34,22 +34,22 @@ Astronic utiliza un servidor público S3 de Amazon para subir sus publicaciones 
 git clone https://github.com/adronmarsh/Astronic.git
 ```
 
-1. Descarga e instala [composer](https://getcomposer.org/) en el directorio del proyecto.
+2. Descarga e instala [composer](https://getcomposer.org/) en el directorio del proyecto.
 ```copyable
 composer install
 ``` 
-1. Descarga [XAMPP](https://www.apachefriends.org/es/download.html) e incia Apache y MySQL.
-2. Configura el archivo de entorno .env. Puedes copiar el archivo de ejemplo .env.example y renombrarlo a .env. Será neceario configuar el acceso a la base de datos y crear una clave para subir imágenes al servidor.
-3. Ejecuta las migraciones.
+3. Descarga [XAMPP](https://www.apachefriends.org/es/download.html) e incia Apache y MySQL.
+4. Configura el archivo de entorno .env. Puedes copiar el archivo de ejemplo .env.example y renombrarlo a .env. Será neceario configuar el acceso a la base de datos y crear una clave para subir imágenes al servidor.
+5. Ejecuta las migraciones.
 ```copyyable
 php artisan migrate
 ```
-1. Inicia el servidor de Laravel.
+6. Inicia el servidor de Laravel.
 ```copyable
 php artisan serve
 ```
-1. Accede a la URL en tu navegador.
+7. Accede a la URL en tu navegador.
 ```copyable
 http://127.0.0.1:8000/
 ```
-1. ¡Listo! Si tienes cualquier duda sobre la instalación escribe un correo a adron.marsh@gmail.com
+8. ¡Listo! Si tienes cualquier duda sobre la instalación escribe un correo a adron.marsh@gmail.com

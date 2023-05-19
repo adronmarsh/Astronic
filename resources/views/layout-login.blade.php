@@ -18,14 +18,12 @@
 
 </head>
 
-<body class="background">
-    <div class="d-flex flex-column">
-        <main class="d-flex justify-content-center align-items-center flex-column flex-grow-1">
+<body class="background d-flex flex-column min-vh-100">
+        <main class="d-flex justify-content-center align-items-center flex-column flex-grow-1 ">
             @yield('content')
         </main>
-        <footer class="mt-5 py-3 footer col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 d-flex justify-content-center align-items-center footer">
+        <footer class="col-12 col-md-8 col-lg-6 d-flex justify-content-center align-items-center text-center w-100">
             Astronic &#169;
         </footer>
-    </div>
 </body>
 </html>

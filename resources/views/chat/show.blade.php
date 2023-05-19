@@ -3,13 +3,14 @@
 @section('title', 'Chat')
 
 @section('content')
-    <div class="row justify-content-start">
-        <div class="mt-5">
+        <div class="m-auto">
             @if ($chat)
-                <img class="avatar rounded-circle img-ms"
-                    src="{{ $receiver->avatar != null ? $receiver->avatar : asset('media/default-avatar.png') }}"
-                    alt="Foto de perfil de {{ $receiver->user }}">
-                <h1>{{ $receiver->user }}</h1>
+                <div class="chat-avatar-container">
+                    <img class="avatar rounded-circle img-ms"
+                        src="{{ $receiver->avatar != null ? $receiver->avatar : asset('media/default-avatar.png') }}"
+                        alt="Foto de perfil de {{ $receiver->user }}">
+                    <h1>{{ $receiver->user }}</h1>
+                </div>
 
                 <div class="chat-container">
                     <div class="messages">
@@ -22,26 +23,24 @@
                             </div>
                         @endforeach
                     </div>
+                    <div class="input-chat-bottom bg-light position-fixed ">
+                        <form method="POST" action="{{ route('messages.store', $chat->id) }}" id="message-form">
+                            @csrf
+
+                            <div class="form-group d-flex justify-content-end">
+                                <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+                                <button type="submit" class="btn btn-link">
+                                    <i class="bi bi-arrow-right-circle-fill bi-lg"></i>
+                                </button>
+                            </div>
+
+                            <input type="hidden" name="chat_id" value="{{ $chat->id }}">
+                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                        </form>
+                    </div>
                 </div>
             @else
                 <p>No se encontró ningún chat.</p>
             @endif
         </div>
-    </div>
-
-    <div class="input-chat-bottom bg-light">
-        <form method="POST" action="{{ route('messages.store', $chat->id) }}" id="message-form">
-            @csrf
-
-            <div class="form-group d-flex justify-content-end">
-                <textarea class="form-control" id="content" name="content" rows="3"></textarea>
-                <button type="submit" class="btn btn-link">
-                    <i class="bi bi-arrow-right-circle-fill bi-lg"></i>
-                </button>
-            </div>
-
-            <input type="hidden" name="chat_id" value="{{ $chat->id }}">
-            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-        </form>
-    </div>
 @endsection

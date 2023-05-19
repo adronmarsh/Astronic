@@ -45,10 +45,14 @@
                     <option value="particular">{{ __('messages.register-individual') }}</option>
                 </select>
             </div>
-
             <button type="submit"
-                class="btn btn-primary btn-lg rounded mt-5 mb-5">{{ __('messages.register-submit_button') }}</button>
-            <a href="login" class="text-decoration-none text-link">{{ __('messages.login-already_registered') }}</a>
+                class="btn btn-primary btn-lg rounded mt-5 mb-2">{{ __('messages.register-submit_button') }}
+            </button>
+            <div>
+                {{ __('messages.login-already_registered_1')}}
+                <a href="login" class="text-link">{{__('messages.login-already_registered_2') }}</a>
+            </div>
+
         </form>
 
 

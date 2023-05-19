@@ -26,7 +26,7 @@ use App\Models\Post;
 // --------------------- Static ---------------------
 Route::get('/', function () {
     return view('welcome');
-})->name('/');
+})->name('/')->middleware('lang');
 
 Route::get('/index', function () {
     $user = auth()->user();

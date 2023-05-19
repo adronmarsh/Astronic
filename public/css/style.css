@@ -16,7 +16,6 @@
 body {
     margin: 0;
     padding: 0;
-    margin-bottom: var(--footer-height);
     width: 100%;
 }
 
@@ -47,7 +46,7 @@ body {
     border-bottom: solid 1px black;
     position: fixed;
     top: 0;
-    z-index: -10;
+    z-index: 10;
 }
 
 .menu-bottom {
@@ -63,8 +62,10 @@ body {
         border-top: 1px solid black;
     }
 
-    .astronic-logo{
+    .astronic-logo {
         opacity: 0;
+        z-index: -1;
+
     }
 }
 
@@ -85,32 +86,42 @@ input[type="file"] {
     z-index: -1;
 }
 
+.chat-avatar-container{
+    width: 80%;
+    position: fixed;
+    bottom: 47rem;
+    left: 10vw;
+
+}
+
 .chat-container {
     height: 50%;
+    min-height: 55vh;
+    width: 80%;
+    margin-bottom: 5vh;
     overflow-y: scroll;
     border: 4px solid black;
     border-radius: 10px;
     background-color: whitesmoke;
-}
-
-.input-chat-bottom{
     position: fixed;
-    bottom: 0;
-    left: 2;
-    margin-bottom: 7rem;
-    z-index: 1000;
-    /* border: 2px solid black; */
-    border-radius: 10px;
-    /* padding: 0.1%; */
-    width: 80%;
+    bottom: 10rem;
+    left: 10vw;
+
 }
 
-.errors{
+.input-chat-bottom {
+    bottom: 6rem;
+    width: 80%;
+    left: 10vw;
+}
+
+
+.errors {
     margin-top: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: column;
-    height: 75% ;
+    height: 75%;
 }

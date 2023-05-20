@@ -8,8 +8,15 @@
     <div class="row justify-content-left">
         <div class="mt-5">
             <h1>Tienda de {{ $user->user }}</h1>
-            <a href="{{ route('cart.show', $user->id) }}">
+            <a href="{{ route('cart.show', $user->id) }}" class="position-relative">
                 <img class="img-menu" src="/media/cart.png" alt="Cart logo">
+                @php
+                    $items = count($user->cart);
+                @endphp
+                @if ($items > 0)
+                    <span
+                        class="position-absolute top-1 end-1 translate-middle badge bg-danger rounded-circle">{{ $items }}</span>
+                @endif
             </a>
         </div>
         @foreach ($products as $product)

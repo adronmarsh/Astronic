@@ -91,17 +91,22 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($productId)
     {
-        //
+        $product = Product::findOrFail($productId);
+        return view('shop.edit', compact('product'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $productId)
     {
-        //
+        $product = Product::findOrFail($productId);
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->save();
+        return redirect()->route('index');
     }
 
     /**
@@ -109,7 +114,9 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return redirect()->back();
     }
 
     public function shop($userId)

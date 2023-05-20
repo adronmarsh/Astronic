@@ -37,8 +37,20 @@
                         <form class="mt-3" action="{{ route('cart.store', $product->id) }}" method="POST">
                             @csrf
                             <input type="hidden" name="productId" id="productId" value="{{ $product->id }}">
-                            <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                            <button type="submit" class="btn btn-primary">Añadir al carrito</button>
                         </form>
+
+                        @if ($user->id == Auth()->id())
+                            <div class="mt-3">
+                                <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary">Editar</a>
+                                <form action="{{ route('product.destroy', $product->id) }}" method="POST"
+                                    class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

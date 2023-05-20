@@ -1,12 +1,14 @@
 @extends('layout')
 
-@section('title') {{ __('messages.settings-title') }} @endsection
+@section('title')
+    {{ __('messages.settings-title') }}
+@endsection
 
 @section('content')
     <section class="mt-5 container col-md-6 mx-auto">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h1 class="mb-5">{{ __('messages.settings-text') }} <h1>
+                <h1 class="mb-5">{{ __('messages.settings-text') }}</h1>
             </div>
         </div>
 
@@ -81,7 +83,8 @@
 
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary mt-2">{{ __('messages.settings-save_location') }}</button>
+                        <button type="submit"
+                            class="btn btn-primary mt-2">{{ __('messages.settings-save_location') }}</button>
                     </div>
                 </div>
             </form>
@@ -109,7 +112,21 @@
             @endif
         </div>
 
+        <div class="row my-5 d-flex justify-content-center">
+            <div class="col-md-12">
+                <a href="/terms/legal-notice"
+                    class="text-decoration-none text-dark">{{ __('messages.terms-legal_notice') }}</a>
+                | <a href="/terms/privacy-policy"
+                    class="text-decoration-none text-dark">{{ __('messages.terms-privacy-policy') }}</a>
+                | <a href="/terms/terms-conditions"
+                    class="text-decoration-none text-dark">{{ __('messages.terms-conditions') }}</a>
+                | <a href="/terms/cookie-policy"
+                    class="text-decoration-none text-dark">{{ __('messages.terms-cookie-policy') }}</a>
+                | <a href="/terms/copyright-policy"
+                    class="text-decoration-none text-dark">{{ __('messages.terms-copyright-policy') }}</a>
+                | <a href="/terms/contact" class="text-decoration-none text-dark">{{ __('messages.terms-contact') }}</a>
 
+            </div>
+        </div>
     </section>
-
 @endsection

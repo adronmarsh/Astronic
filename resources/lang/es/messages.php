@@ -56,4 +56,11 @@ return [
     'upload-product-price' => 'Precio',
     'upload-product-file' => 'Cargar Imagen/Vídeo',
     'upload-product-create' => 'Publicar',
+    'terms-contact' => 'Contacto',
+    'terms-cookie-policy' => 'Política de Cookies',
+    'terms-copyright-policy' => 'Política de Derechos de Autor',
+    'terms-legal_notice' => 'Aviso Legal',
+    'terms-privacy-policy' => 'Política de Privacidad',
+    'terms-conditions' => 'Términos y Condiciones',
+
 ];

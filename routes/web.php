@@ -40,6 +40,25 @@ Route::get('/upload', function () {
     return view('upload');
 })->name('upload')->middleware(['auth', 'lang']);
 
+Route::get('terms/contact', function () {
+    return view('terms.contact');
+});
+Route::get('terms/cookie-policy', function () {
+    return view('terms.cookie-policy');
+});
+Route::get('terms/copyright-policy', function () {
+    return view('terms.copyright-policy');
+});
+Route::get('terms/legal-notice', function () {
+    return view('terms.legal-notice');
+});
+Route::get('terms/privacy-policy', function () {
+    return view('terms.privacy-policy');
+});
+Route::get('terms/terms-conditions', function () {
+    return view('terms.terms-conditions');
+});
+
 // --------------------- Login ---------------------
 Route::get('/register', [LoginController::class, 'registerForm'])->name('registerForm')->middleware('lang');
 Route::post('/register', [Logincontroller::class, 'register'])->name('register');

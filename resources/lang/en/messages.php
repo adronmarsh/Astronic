@@ -55,5 +55,12 @@ return [
     'upload-product-price' => 'Price',
     'upload-product-file' => 'Upload Image/Video',
     'upload-product-create' => 'Publish',
+    'terms-contact' => 'Contact',
+    'terms-cookie-policy' => 'Cookie Policy',
+    'terms-copyright-policy' => 'Copyright Policy',
+    'terms-legal_notice' => 'Legal Notice',
+    'terms-privacy-policy' => 'Privacy Policy',
+    'terms-conditions' => 'Terms and Conditions',
+
 
 ];

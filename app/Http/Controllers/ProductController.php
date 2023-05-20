@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use App\Models\User;
-use App\Models\Like;
 use Illuminate\Http\Request;
-use App\Http\Requests\PostRequest;
+use App\Models\User;
+use App\Models\Product;
+use App\Models\Cart;
 use Illuminate\Support\Str;
 use League\Flysystem\Filesystem;
 use Aws\S3\S3Client;
 use League\Flysystem\AwsS3V3\AwsS3V3Adapter;
 
-
-class PostController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,26 +28,26 @@ class PostController extends Controller
     {
         $userId = auth()->id();
         $user = User::findOrFail($userId);
-        if ($user->rol!='corporation') {
+        if ($user->rol != 'corporation') {
             return redirect()->route('/');
         }
-        return view('posts.create');
+        return view('shop.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PostRequest $request)
+    public function store(Request $request)
     {
         $userId = auth()->id();
         $user = User::findOrFail($userId);
-        if ($user->rol=='particular'){
-            abort(403, 'No tienes permisos para publicar un post.');
+        if ($user->rol == 'particular') {
+            abort(403, 'No tienes permisos para subir un producto.');
         }
-        $post = new Post;
-        $post->user_id = $userId;
-        $post->title = $request['title'];
-        $post->content = $request['content'];
+        $product = new Product;
+        $product->user_id = $userId;
+        $product->name = $request['name'];
+        $product->price = $request['price'];
 
         if ($request->hasFile('media')) {
             $file = $request->file('media');
@@ -69,25 +67,23 @@ class PostController extends Controller
 
             $filesystem = new Filesystem($adapter);
 
-            $path = '/posts/' . $fileName;
+            $path = '/products/' . $fileName;
 
             $filesystem->write($path, file_get_contents($file));
 
             $url = env('AWS_URL') . $path;
-            $post->url = $url;
+            $product->url = $url;
         }
 
-        $post->save();
+        $product->save();
 
         return redirect()->route('index');
     }
 
-
-
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show($userId)
     {
         //
     }
@@ -95,7 +91,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(string $id)
     {
         //
     }
@@ -103,7 +99,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -111,30 +107,18 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(string $id)
     {
         //
     }
 
-
-    public function like($postId)
+    public function shop($userId)
     {
-        $userId = auth()->id();
-        $post = Post::findOrFail($postId);
-        $likesCount = Like::where('post_id', $postId)->count();
-
-        if ($post->likes()->where('user_id', $userId)->exists()) {
-            $like = Like::where('post_id', $postId)->where('user_id', $userId)->first();
-            $like->delete();
-
-        } else {
-
-            $like = new Like();
-            $like->post_id = $postId;
-            $like->user_id = auth()->id();
-            $like->save();
-
+        $user = User::findOrFail($userId);
+        if ($user->rol != 'corporation') {
+            return redirect()->route('/');
         }
-        return response()->json(['likes_count' => $likesCount]);
+        $products = Product::where('user_id', $userId)->get();
+        return view('shop.show', compact('user', 'products'));
     }
 }

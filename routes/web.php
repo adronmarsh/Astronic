@@ -8,6 +8,8 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use App\Models\Post;
 
 
@@ -33,6 +35,10 @@ Route::get('/index', function () {
     $posts = Post::latest()->get();
     return view('index', compact(['user', 'posts']));
 })->name('index')->middleware(['auth', 'lang']);
+
+Route::get('/upload', function () {
+    return view('upload');
+})->name('upload')->middleware(['auth', 'lang']);
 
 // --------------------- Login ---------------------
 Route::get('/register', [LoginController::class, 'registerForm'])->name('registerForm')->middleware('lang');
@@ -68,3 +74,8 @@ Route::post('/set-font', [SettingController::class, 'setFont'])->name('setFont')
 Route::post('/set-location', [SettingController::class, 'setLocation'])->name('setLocation')->middleware('auth');
 Route::get('/upgrade', [SettingController::class, 'upgrade'])->name('upgrade')->middleware('auth');
 Route::get('/downgrade', [SettingController::class, 'downgrade'])->name('downgrade')->middleware('auth');
+
+// --------------------- Shop ---------------------
+Route::resource('/product', ProductController::class)->middleware(['auth', 'lang']);
+Route::get('/shop/{id}', [ProductController::class, 'shop'])->name('shop')->middleware(['auth', 'lang']);
+Route::resource('/cart', CartController::class)->middleware(['auth', 'lang']);

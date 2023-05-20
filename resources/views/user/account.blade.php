@@ -12,8 +12,19 @@
                 alt="Foto de perfil de {{ $user->user }}">
             <div class="d-flex justify-content-center align-items-center">
                 <h1 class="p-3">{{ $user->user }}</h1>
-                <div><a href="{{ route('users.edit', $user->id) }}"
-                        class="btn btn-primary">{{ __('messages.account-edit') }}</a></div>
+                <div>
+                    <a href="{{ route('users.edit', $user->id) }}"
+                        class="btn btn-primary">{{ __('messages.account-edit') }}</a>
+                </div>
+                @auth
+                    @if (Auth::user()->rol == 'corporation')
+                        <div class="p-3">
+                            <a href="{{ route('shop', $user->id) }}">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    @endif
+                @endauth
             </div>
             <div class="d-flex justify-content-center">
                 <p class="p-3">{{ $user->posts->count() }} {{ __('messages.account-posts') }}</p>

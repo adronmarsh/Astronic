@@ -17,9 +17,16 @@
                         class="btn btn-primary">{{ $isFollowing ? __('messages.account-unfollow') : __('messages.account-follow') }}
                     </a>
                 </div>
-                <a href="{{ route('chat.show', $user->id) }}">
-                    <i class="fa fa-regular fa-envelope"></i>
-                </a>
+                <div class="p-3">
+                    <a href="{{ route('chat.show', $user->id) }}">
+                        <i class="fa fa-regular fa-envelope"></i>
+                    </a>
+                </div>
+                <div class="p-3">
+                    <a href="{{ route('shop', $user->id) }}">
+                        <i class="fa fa-shopping-cart"></i>
+                    </a>
+                </div>
             </div>
 
             <div class="d-flex justify-content-center">

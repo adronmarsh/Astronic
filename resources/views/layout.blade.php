@@ -42,7 +42,7 @@
                 @auth
                     @if (Auth::user()->rol == 'corporation')
                         <li class="nav-item">
-                            <a href="/posts/create" class="nav-link"><img class="img-menu" src="/media/menu/plus.png"
+                            <a href="/upload" class="nav-link"><img class="img-menu" src="/media/menu/plus.png"
                                     alt="Submit Posts"></a>
                         </li>
                     @endif

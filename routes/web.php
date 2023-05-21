@@ -10,6 +10,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\NoticeController;
 use App\Models\Post;
 
 
@@ -98,3 +99,7 @@ Route::get('/downgrade', [SettingController::class, 'downgrade'])->name('downgra
 Route::resource('/product', ProductController::class)->middleware(['auth', 'lang']);
 Route::get('/shop/{id}', [ProductController::class, 'shop'])->name('shop')->middleware(['auth', 'lang']);
 Route::resource('/cart', CartController::class)->middleware(['auth', 'lang']);
+
+// --------------------- Notice ---------------------
+Route::resource('/notice', NoticeController::class)->middleware(['auth', 'lang']);
+Route::get('/notices/{id}', [NoticeController::class, 'userNotices'])->name('userNotices')->middleware(['auth', 'lang']);

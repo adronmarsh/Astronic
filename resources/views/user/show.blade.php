@@ -7,9 +7,11 @@
 @section('content')
     <div class="row d-flex justify-content-left">
         <div class="mt-5">
-            <img class="avatar rounded-circle img-ms"
+            <a href="{{route('userNotices', $user->id)}}">
+                <img class="avatar rounded-circle img-ms"
                 src="{{ $user->avatar != null ? $user->avatar : asset('media/default-avatar.png') }}"
                 alt="Foto de perfil de {{ $user->user }}">
+            </a>
             <div class="d-flex justify-content-center align-items-center">
                 <h1 class="p-3">{{ $user->user }}</h1>
                 <div class="p-3">

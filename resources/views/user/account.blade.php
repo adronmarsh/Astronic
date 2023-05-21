@@ -7,9 +7,14 @@
 @section('content')
     <div class="row d-flex justify-content-left">
         <div class="mt-5">
-            <img class="avatar rounded-circle img-ms"
-                src="{{ $user->avatar != null ? $user->avatar : asset('media/default-avatar.png') }}"
-                alt="Foto de perfil de {{ $user->user }}">
+            @if (count($user->notices) != 0)
+                <a href="{{ route('userNotices', $user->id) }}">
+            @endif
+            <img class="avatar rounded-circle {{ count($user->notices) != 0 ? 'border border-success border-3' : '' }} img-ms"
+                src="{{ $user->avatar ?? asset('media/default-avatar.png') }}" alt="Foto de perfil de {{ $user->user }}">
+            @if (count($user->notices) != 0)
+                </a>
+            @endif
             <div class="d-flex justify-content-center align-items-center">
                 <h1 class="p-3">{{ $user->user }}</h1>
                 <div>

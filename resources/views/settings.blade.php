@@ -46,7 +46,7 @@
             </form>
         </div>
 
-        <div class="row mt-5">
+        {{-- <div class="row mt-5">
             <form id="location-form" method="POST" action="{{ route('setLocation') }}">
                 @csrf
                 <div class="col-md-12 d-flex justify-content-left flex-wrap">
@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </form>
-        </div>
+        </div> --}}
 
         <div class="row mt-5">
             @if (auth()->user()->premium)

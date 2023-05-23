@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="row justify-content-left">
+    <div class="row justify-content-left mb-5">
         <div class="mt-5">
             <h1>Tienda de {{ $user->user }}</h1>
             <a href="{{ route('cart.show', $user->id) }}" class="position-relative">
@@ -24,7 +24,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{ $product->name }}</h5>
-                        <p class="card-text">{{ $product->price }}€</p>
+                        @if (Auth::user()->premium == true)
+                            <p class="card-text"><span class="text-decoration-line-through">{{ $product->price }}€</span> {{ $product->offer }}€</p>
+                        @else
+                            <p class="card-text">{{ $product->price }}€</p>
+                        @endif
                         @if ($product->url)
                             @if (in_array(pathinfo($product->url, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif', 'jfif']))
                                 <img class="card-img-top" src="{{ $product->url }}" alt="{{ $product->title }}">

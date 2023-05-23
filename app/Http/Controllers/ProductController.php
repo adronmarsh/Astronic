@@ -48,6 +48,7 @@ class ProductController extends Controller
         $product->user_id = $userId;
         $product->name = $request['name'];
         $product->price = $request['price'];
+        $product->offer = $request['offer'];
 
         if ($request->hasFile('media')) {
             $file = $request->file('media');
@@ -105,6 +106,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($productId);
         $product->name = $request->input('name');
         $product->price = $request->input('price');
+        $product->offer = $request->input('offer');
         $product->save();
         return redirect()->route('index');
     }

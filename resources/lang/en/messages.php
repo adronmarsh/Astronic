@@ -54,6 +54,7 @@ return [
     'upload-product-text' => 'Upload Product',
     'upload-product-name' => 'Name',
     'upload-product-price' => 'Price',
+    'upload-product-offer' => 'Oferta',
     'upload-product-file' => 'Upload Image/Video',
     'upload-product-create' => 'Publish',
     'upload-notice-title' => 'Upload Notice',

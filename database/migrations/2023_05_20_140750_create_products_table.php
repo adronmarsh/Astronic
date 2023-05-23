@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->decimal('price', 10, 2);
+            $table->decimal('offer', 10, 2);
             $table->string('url')->nullable();
             $table->timestamps();
 

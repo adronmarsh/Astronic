@@ -17,7 +17,15 @@
 
         <div class="form-group mt-5">
             <label for="price">{{ __('messages.upload-product-price') }}</label>
-            <textarea name="price" id="price" class="form-control" required>{{ old('price') }}</textarea>
+            <input name="price" id="price" class="form-control" required>{{ old('price') }}
+            @error('price')
+                <p class="text-danger">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div class="form-group mt-5">
+            <label for="offer">{{ __('messages.upload-product-offer') }}</label>
+            <input name="offer" id="offer" class="form-control" required>{{ old('offer') }}
             @error('price')
                 <p class="text-danger">{{ $message }}</p>
             @enderror

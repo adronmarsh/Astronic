@@ -4,6 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Models\Notice;
+use Aws\S3\S3Client;
 
 class Kernel extends ConsoleKernel
 {
@@ -12,7 +14,31 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            $notices = Notice::where('created_at', '<=', now()->subHours(24))->get();
+            foreach ($notices as $notice) {
+                if (!empty($notice->media)) {
+
+                    $fileName = basename(parse_url($notice->media, PHP_URL_PATH));
+                    $filePath = 'notices/' . $fileName;
+
+                    $s3Client = new S3Client([
+                        'region' => env('AWS_DEFAULT_REGION'),
+                        'version' => 'latest',
+                        'credentials' => [
+                            'key' => env('AWS_ACCESS_KEY_ID'),
+                            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+                        ],
+                    ]);
+
+                    $s3Client->deleteObject([
+                        'Bucket' => env('AWS_BUCKET'),
+                        'Key' => $filePath,
+                    ]);
+                }
+                $notice->delete();
+            }
+        })->daily();
     }
 
     /**

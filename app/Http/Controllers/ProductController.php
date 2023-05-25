@@ -123,11 +123,13 @@ class ProductController extends Controller
 
     public function shop($userId)
     {
+        $buyerId = Auth()->id();
+        $buyer = User::findOrFail($buyerId);
         $user = User::findOrFail($userId);
         if ($user->rol != 'corporation') {
             return redirect()->route('/');
         }
         $products = Product::where('user_id', $userId)->get();
-        return view('shop.show', compact('user', 'products'));
+        return view('shop.show', compact('user', 'products','buyer'));
     }
 }

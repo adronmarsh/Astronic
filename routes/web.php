@@ -82,9 +82,9 @@ Route::resource('/comments', CommentController::class)->middleware(['auth','lang
 
 // --------------------- Chat ---------------------
 Route::resource('/chat', ChatController::class)->middleware(['auth', 'lang']);
-Route::get('/chat/create/{receiverId}', [ChatController::class, 'create'])->name('chat.create')->middleware('auth');
+Route::get('/chat/create/{receiverId}', [ChatController::class, 'newChat'])->name('newChat')->middleware('auth');
 
-// --------------------- Chat ---------------------
+// --------------------- Messages ---------------------
 Route::resource('/messages', MessageController::class)->middleware(['auth', 'lang']);
 
 // --------------------- Settings ---------------------

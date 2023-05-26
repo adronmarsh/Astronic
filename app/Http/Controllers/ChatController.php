@@ -45,6 +45,11 @@ class ChatController extends Controller
         }
         $messages = $chat->messages()->orderBy('created_at', 'asc')->get();
         $receiver = User::where('id', $receiverId)->first();
+
+        if ($chat->user_id != $userId && $chat->receiver_id != $userId){
+            return redirect()->route('/');
+        }
+
         return view('chat.show', compact('chat', 'receiver', 'messages'));
     }
 

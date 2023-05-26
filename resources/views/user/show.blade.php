@@ -7,10 +7,10 @@
 @section('content')
     <div class="row d-flex justify-content-left">
         <div class="mt-5">
-            <a href="{{route('userNotices', $user->id)}}">
+            <a href="{{ route('userNotices', $user->id) }}">
                 <img class="avatar rounded-circle img-ms"
-                src="{{ $user->avatar != null ? $user->avatar : asset('media/default-avatar.png') }}"
-                alt="Foto de perfil de {{ $user->user }}">
+                    src="{{ $user->avatar != null ? $user->avatar : asset('media/default-avatar.png') }}"
+                    alt="Foto de perfil de {{ $user->user }}">
             </a>
             <div class="d-flex justify-content-center align-items-center">
                 <h1 class="p-3">{{ $user->user }}</h1>
@@ -24,11 +24,13 @@
                         <i class="fa fa-regular fa-envelope"></i>
                     </a>
                 </div>
-                <div class="p-3">
-                    <a href="{{ route('shop', $user->id) }}">
-                        <i class="fa fa-shopping-cart"></i>
-                    </a>
-                </div>
+                @if ($user->rol == 'corporation')
+                    <div class="p-3">
+                        <a href="{{ route('shop', $user->id) }}">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                    </div>
+                @endif
             </div>
 
             <div class="d-flex justify-content-center">

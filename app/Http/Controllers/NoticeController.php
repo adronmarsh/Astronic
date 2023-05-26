@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Notice;
+use App\Models\User;
 use Illuminate\Support\Str;
 use League\Flysystem\Filesystem;
 use Aws\S3\S3Client;
@@ -24,7 +25,11 @@ class NoticeController extends Controller
      */
     public function create()
     {
-        return view('notice.create');
+        $userId = Auth()->id();
+        $user = User::findOrFail($userId);
+        if ($user->rol == 'corporation')
+            return view('notice.create');
+        return redirect()->route('/');
     }
 
     /**

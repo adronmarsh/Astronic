@@ -43,7 +43,7 @@ class CartController extends Controller
     public function show($userId)
     {
         $user = User::findOrFail($userId);
-        if ($user->rol != 'corporation') {
+        if ($user->id != Auth()->id()) {
             return redirect()->route('/');
         }
         $carts = Cart::where('user_id', $userId)->get();

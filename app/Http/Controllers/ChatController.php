@@ -41,7 +41,7 @@ class ChatController extends Controller
         })->first();
 
         if ($chat == null) {
-            return redirect()->route('chat.create', compact('receiverId'));
+            return redirect()->route('newChat', compact('receiverId'));
         }
         $messages = $chat->messages()->orderBy('created_at', 'asc')->get();
         $receiver = User::where('id', $receiverId)->first();
@@ -55,15 +55,6 @@ class ChatController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $receiverId)
-    {
-        $chat = new Chat;
-        $chat->user_id = auth()->id();
-        $chat->receiver_id = $receiverId;
-        $chat->message = $request->input('content');
-        $chat->save();
-        return redirect()->back();
-    }
 
     /**
      * Update the specified resource in storage.
@@ -90,7 +81,7 @@ class ChatController extends Controller
         return redirect()->route('chat.index');
     }
 
-    public function create($receiverId)
+    public function newChat($receiverId)
     {
         $chat = new Chat;
         $chat->user_id = auth()->id();

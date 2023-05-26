@@ -8,10 +8,10 @@
     <div class="row justify-content-left mb-5">
         <div class="mt-5">
             <h1>Tienda de {{ $user->user }}</h1>
-            <a href="{{ route('cart.show', $user->id) }}" class="position-relative">
+            <a href="{{ route('cart.show', $buyer->id) }}" class="position-relative">
                 <img class="img-menu" src="/media/cart.png" alt="Cart logo">
                 @php
-                    $items = count($user->cart);
+                    $items = count($buyer->cart);
                 @endphp
                 @if ($items > 0)
                     <span

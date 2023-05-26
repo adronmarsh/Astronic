@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductRequest extends FormRequest
+class NoticeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'user_id' => 'required|integer|unsigned',
-            'name' => 'required|string',
-            'price' => 'required|numeric',
-            'offer' => 'required|numeric',
-            'url' => 'nullable|string',
+            'media' => 'required|string',
         ];
     }
 
@@ -36,13 +33,8 @@ class ProductRequest extends FormRequest
             'user_id.required' => 'El campo user_id es obligatorio.',
             'user_id.integer' => 'El campo user_id debe ser un número entero.',
             'user_id.unsigned' => 'El campo user_id debe ser un número entero sin signo.',
-            'name.required' => 'El campo name es obligatorio.',
-            'name.string' => 'El campo name debe ser una cadena de caracteres.',
-            'price.required' => 'El campo price es obligatorio.',
-            'price.numeric' => 'El campo price debe ser un número.',
-            'offer.required' => 'El campo offer es obligatorio.',
-            'offer.numeric' => 'El campo offer debe ser un número.',
-            'url.string' => 'El campo url debe ser una cadena de caracteres.',
+            'media.required' => 'El campo media es obligatorio.',
+            'media.string' => 'El campo media debe ser una cadena de caracteres.',
         ];
     }
 }

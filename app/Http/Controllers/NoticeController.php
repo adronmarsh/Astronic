@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\NoticeRequest;
 use App\Models\Notice;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -35,7 +36,7 @@ class NoticeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(NoticeRequest $request)
     {
         $notice = new Notice;
         $notice->user_id = Auth()->id();

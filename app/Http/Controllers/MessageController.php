@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Models\Chat;
 use Illuminate\Http\Request;
+use App\Http\Requests\MessageRequest;
+
 
 class MessageController extends Controller
 {
@@ -30,7 +32,7 @@ class MessageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MessageRequest $request)
     {
         $message = new Message();
         $message->content = $request->input('content');
